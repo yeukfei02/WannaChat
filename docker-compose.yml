@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  web:
+    container_name: WannaChat
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/go/src/app
+      - /go/src/app/vendor
+    ports:
+      - 8080:8080
+    links:
+      - db
+  db:
+    container_name: postgres
+    image: postgres:10.5
+    ports:
+      - 5432:5432
