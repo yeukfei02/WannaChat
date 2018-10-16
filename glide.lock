@@ -1,5 +1,5 @@
-hash: 165b236f5966789b7368e93b6575a2f8a2c2a3d476bf10cdae13079c6567cdcc
-updated: 2018-10-16T08:40:13.078204+08:00
+hash: 981d6e6f7181cd3f4452ab6fa7b3e67b29844f1b89ed8647468e15b22cf5c94f
+updated: 2018-10-16T21:45:47.073723+08:00
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
@@ -15,10 +15,19 @@ imports:
   version: ddf22928ea3c56eb4292a0adbbf5001b1e8e7d0d
   subpackages:
   - proto
+- name: github.com/jinzhu/gorm
+  version: 6ed508ec6a4ecb3531899a69cbc746ccf65a4166
+  subpackages:
+  - dialects/postgres
+- name: github.com/jinzhu/inflection
+  version: 04140366298a54a039076d798123ffa108fff46c
 - name: github.com/json-iterator/go
   version: 2433035e513208b0f7bd5b50d0aecd889b2c1ff8
 - name: github.com/lib/pq
   version: 4ded0e9383f75c197b3a2aaa6d590ac52df6fd79
+  subpackages:
+  - hstore
+  - oid
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/modern-go/concurrent

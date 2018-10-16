@@ -5,7 +5,7 @@ import (
   "github.com/gin-gonic/gin"
 	"time"
 
-  // "WannaChat/model/userModel"
+  "WannaChat/model/userModel"
   jwt "github.com/dgrijalva/jwt-go"
 )
 
@@ -19,6 +19,8 @@ type User struct {
 func Signup(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
+
+  userModel.InsertUser(user.Email, user.Password)
 
 	c.JSON(200, gin.H{
 		"message": "signup!",
