@@ -1,5 +1,5 @@
-hash: 35ec7c78543666001bc7b8ba92706b4878dd5c7853bffcf9a6eff1163dd13bf5
-updated: 2018-10-15T21:46:33.769018+08:00
+hash: 0bcbf407f474fc007f95a78ff9120bfa983d8e19f0fa13fcaa51050023efc84a
+updated: 2018-10-16T08:25:41.039082+08:00
 imports:
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
@@ -15,6 +15,8 @@ imports:
   - proto
 - name: github.com/json-iterator/go
   version: 2433035e513208b0f7bd5b50d0aecd889b2c1ff8
+- name: github.com/lib/pq
+  version: 4ded0e9383f75c197b3a2aaa6d590ac52df6fd79
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/modern-go/concurrent
