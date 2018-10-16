@@ -33,20 +33,26 @@ func Login(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
 
-  userModel.GetUserPassword(user.Email)
+  userPasswordFromDb := userModel.GetUserPassword(user.Email)
 
-  token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
-    Email: user.Email,
-    Password: user.Password,
-  })
-  tokenString, err := token.SignedString([]byte("secret"))
-  checkErr(err)
+  if (user.Password == userPasswordFromDb) {
+    token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
+      Email: user.Email,
+      Password: user.Password,
+    })
+    tokenString, err := token.SignedString([]byte("secret"))
+    checkErr(err)
 
-  c.JSON(200, gin.H{
-    "message": "login success!",
-    "token": tokenString,
-    "createdDateTime": time.Now(),
-  })
+    c.JSON(200, gin.H{
+      "message": "login success!",
+      "token": tokenString,
+      "createdDateTime": time.Now(),
+    })
+  } else {
+    c.JSON(400, gin.H{
+      "message": "login fail!",
+    })
+  }
 }
 
 func checkErr(err error) {

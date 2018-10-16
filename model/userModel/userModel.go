@@ -32,13 +32,14 @@ func InsertUser(email string, password string) {
   db.Create(&user)
 }
 
-func GetUserPassword(email string) {
+func GetUserPassword(email string) string {
   db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
   checkErr(err)
   defer db.Close()
 
   var user User
   db.Where("email = ?", email).Find(&user)
+  return user.Password
 }
 
 func checkErr(err error) {
