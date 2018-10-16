@@ -6,7 +6,6 @@ import (
 )
 
 type Group struct {
-	gorm.Model
-	UserEmail  string `json:"user_email"`
-	GroupLabel string `json:"group_label"`
+	UserEmail  string `json:"userEmail"`
+	GroupLabel string `json:"groupLabel"`
 }

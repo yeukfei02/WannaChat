@@ -8,7 +8,6 @@ import (
 )
 
 type User struct {
-  gorm.Model
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
@@ -38,9 +37,7 @@ func GetUserPassword(email string) {
   checkErr(err)
   defer db.Close()
 
-  user := User{
-    Email: email,
-  }
+  var user User
   db.Where("email = ?", email).Find(&user)
 }
 
