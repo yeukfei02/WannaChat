@@ -25,7 +25,8 @@ const (
 )
 
 func InsertUser(email string, password string) {
-  db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
+  postgresInfo := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
+  db, err := gorm.Open("postgres", postgresInfo)
   checkErr(err)
   defer db.Close()
   db.AutoMigrate(&User{})
@@ -38,7 +39,8 @@ func InsertUser(email string, password string) {
 }
 
 func GetUserPassword(email string) string {
-  db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
+  postgresInfo := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
+  db, err := gorm.Open("postgres", postgresInfo)
   checkErr(err)
   defer db.Close()
   db.AutoMigrate(&User{})
@@ -49,7 +51,8 @@ func GetUserPassword(email string) string {
 }
 
 func GetAllUsers() Users {
-  db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
+  postgresInfo := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
+  db, err := gorm.Open("postgres", postgresInfo)
   checkErr(err)
   defer db.Close()
   db.AutoMigrate(&User{})
@@ -60,7 +63,8 @@ func GetAllUsers() Users {
 }
 
 func GetUserById(userId string) User {
-  db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
+  postgresInfo := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
+  db, err := gorm.Open("postgres", postgresInfo)
   checkErr(err)
   defer db.Close()
   db.AutoMigrate(&User{})
