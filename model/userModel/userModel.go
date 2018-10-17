@@ -7,11 +7,13 @@ import (
   _ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
+type Users []User
+
 type User struct {
   gorm.Model
-  UserId    int     `gorm:"primary_key; auto_increment;"`
-	Email     string  `gorm:"type:varchar(255); not null;"`
-	Password  string  `gorm:"type:varchar(255); not null;"`
+  UserId    int     `json:"userId" gorm:"primary_key; auto_increment;"`
+	Email     string  `json:"email" gorm:"type:varchar(255); not null;"`
+	Password  string  `json:"password" gorm:"type:varchar(255); not null;"`
 }
 
 const (
@@ -44,6 +46,28 @@ func GetUserPassword(email string) string {
   var user User
   db.Where("email = ?", email).Find(&user)
   return user.Password
+}
+
+func GetAllUsers() Users {
+  db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
+  checkErr(err)
+  defer db.Close()
+  db.AutoMigrate(&User{})
+
+  var users Users
+  db.Find(&users)
+  return users
+}
+
+func GetUserById(userId string) User {
+  db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
+  checkErr(err)
+  defer db.Close()
+  db.AutoMigrate(&User{})
+
+  var user User
+  db.Where("ID = ?", userId).Find(&user)
+  return user
 }
 
 func checkErr(err error) {

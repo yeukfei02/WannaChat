@@ -7,7 +7,7 @@ import (
 
 type Group struct {
 	gorm.Model
-	GroupId    int    `gorm:"primary_key; auto_increment;"`
-	UserEmail  string `gorm:"type:varchar(255); not null;"`
-	GroupLabel string `gorm:"type:varchar(255); not null;"`
+	GroupId    int    `json:"groupId" gorm:"primary_key; auto_increment;"`
+	UserEmail  string `json:"userEmail" gorm:"type:varchar(255); not null;"`
+	GroupLabel string `json:"groupLabel" gorm:"type:varchar(255); not null;"`
 }

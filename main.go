@@ -16,8 +16,8 @@ func main() {
 	{
 		api.POST("/users/signup", userController.Signup)
 		api.POST("/users/login", userController.Login)
-		// api.GET("/users", userController.GetAllUsers)
-		// api.GET("/users/:id", userController.GetUserById)
+		api.GET("/users", userController.GetAllUsers)
+		api.GET("/users/:id", userController.GetUserById)
 		// api.POST("/users/", userController.CreateUser)
 		// api.PUT("/users/:id", userController.UpdateUserById)
 		// api.DELETE("/users/:id", userController.DeleteUserById)

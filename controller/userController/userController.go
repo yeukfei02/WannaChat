@@ -3,6 +3,7 @@ package userController
 import (
   "fmt"
   "github.com/gin-gonic/gin"
+  "strings"
 	"time"
 
   "WannaChat/model/userModel"
@@ -52,6 +53,64 @@ func Login(c *gin.Context) {
     c.JSON(400, gin.H{
       "message": "login fail!",
     })
+  }
+}
+
+func GetAllUsers(c *gin.Context) {
+  if len(c.Request.Header.Get("Authorization")) > 0 {
+	  requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
+
+	  token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
+	    return []byte("secret"), nil
+	  })
+	  checkErr(err)
+
+    if (token.Valid) {
+			usersList := userModel.GetAllUsers()
+
+		  c.JSON(200, gin.H{
+		    "message": "get all users!",
+		    "users": usersList,
+		    "count": len(usersList),
+		  })
+		} else {
+			c.JSON(404, gin.H{
+		    "message": "wrong token!",
+		  })
+		}
+  } else {
+    c.JSON(404, gin.H{
+			"message": "missing token!",
+		})
+  }
+}
+
+func GetUserById(c *gin.Context) {
+  if len(c.Request.Header.Get("Authorization")) > 0 {
+	  requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
+
+	  token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
+	    return []byte("secret"), nil
+	  })
+	  checkErr(err)
+
+    if (token.Valid) {
+      userId := c.Param("id")
+			user := userModel.GetUserById(userId)
+
+		  c.JSON(200, gin.H{
+		    "message": "get user by id!",
+		    "user": user,
+		  })
+		} else {
+			c.JSON(404, gin.H{
+		    "message": "wrong token!",
+		  })
+		}
+  } else {
+    c.JSON(404, gin.H{
+			"message": "missing token!",
+		})
   }
 }
 
