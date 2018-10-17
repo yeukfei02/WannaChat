@@ -3,9 +3,9 @@ package userController
 import (
   "fmt"
   "github.com/gin-gonic/gin"
-  "strings"
 	"time"
 
+  "WannaChat/common"
   "WannaChat/model/userModel"
   jwt "github.com/dgrijalva/jwt-go"
 )
@@ -57,60 +57,36 @@ func Login(c *gin.Context) {
 }
 
 func GetAllUsers(c *gin.Context) {
-  if len(c.Request.Header.Get("Authorization")) > 0 {
-	  requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
+  tokenValid := common.CheckAuth(c)
+  if (tokenValid) {
+    usersList := userModel.GetAllUsers()
 
-	  token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
-	    return []byte("secret"), nil
-	  })
-	  checkErr(err)
-
-    if (token.Valid) {
-			usersList := userModel.GetAllUsers()
-
-		  c.JSON(200, gin.H{
-		    "message": "get all users!",
-		    "users": usersList,
-		    "count": len(usersList),
-		  })
-		} else {
-			c.JSON(404, gin.H{
-		    "message": "wrong token!",
-		  })
-		}
+    c.JSON(200, gin.H{
+      "message": "get all users!",
+      "users": usersList,
+      "count": len(usersList),
+    })
   } else {
     c.JSON(404, gin.H{
-			"message": "missing token!",
-		})
+      "message": "wrong or missing token!",
+    })
   }
 }
 
 func GetUserById(c *gin.Context) {
-  if len(c.Request.Header.Get("Authorization")) > 0 {
-	  requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
+  tokenValid := common.CheckAuth(c)
+  if (tokenValid) {
+    userId := c.Param("id")
+    user := userModel.GetUserById(userId)
 
-	  token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
-	    return []byte("secret"), nil
-	  })
-	  checkErr(err)
-
-    if (token.Valid) {
-      userId := c.Param("id")
-			user := userModel.GetUserById(userId)
-
-		  c.JSON(200, gin.H{
-		    "message": "get user by id!",
-		    "user": user,
-		  })
-		} else {
-			c.JSON(404, gin.H{
-		    "message": "wrong token!",
-		  })
-		}
+    c.JSON(200, gin.H{
+      "message": "get user by id!",
+      "user": user,
+    })
   } else {
     c.JSON(404, gin.H{
-			"message": "missing token!",
-		})
+      "message": "wrong or missing token!",
+    })
   }
 }
 
