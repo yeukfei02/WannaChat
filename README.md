@@ -12,9 +12,9 @@ Our goal is to build the greatest collaboration platform for developer, are you 
 
 clone the project to your GOPATH/src
 
-create table in postgres
+check table in postgres
 ```
-$ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U nfsqmmqiirrfxf -d d9qd4thbsdmqkp -f db.sql
+$ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U nfsqmmqiirrfxf -d d9qd4thbsdmqkp
 $ 0f4a0aa4b34a48fd5586772b743de5abeac903bec98ce98e44c1ca2bd6a7ac07
 ```
 

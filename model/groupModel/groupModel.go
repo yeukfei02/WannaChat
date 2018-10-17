@@ -6,6 +6,8 @@ import (
 )
 
 type Group struct {
-	UserEmail  string `json:"userEmail"`
-	GroupLabel string `json:"groupLabel"`
+	gorm.Model
+	GroupId    int    `gorm:"primary_key; auto_increment;"`
+	UserEmail  string `gorm:"type:varchar(255); not null;"`
+	GroupLabel string `gorm:"type:varchar(255); not null;"`
 }

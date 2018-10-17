@@ -6,6 +6,9 @@ import (
 )
 
 type Membership struct {
-	UserEmail string `json:"userEmail"`
-	GroupID   string `json:"groupId"`
+	gorm.Model
+	MembershipId 	int     `gorm:"primary_key; auto_increment;"`
+	UserEmail 		string 	`gorm:"type:varchar(255); not null;"`
+	UserId   			int 		`gorm:"foreignkey;"`
+	GroupId   		int 		`gorm:"foreignkey;"`
 }

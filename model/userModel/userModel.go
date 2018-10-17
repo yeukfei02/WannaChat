@@ -8,8 +8,10 @@ import (
 )
 
 type User struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+  gorm.Model
+  UserId    int     `gorm:"primary_key; auto_increment;"`
+	Email     string  `gorm:"type:varchar(255); not null;"`
+	Password  string  `gorm:"type:varchar(255); not null;"`
 }
 
 const (
@@ -24,6 +26,7 @@ func InsertUser(email string, password string) {
   db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
   checkErr(err)
   defer db.Close()
+  db.AutoMigrate(&User{})
 
   user := User{
     Email: email,
@@ -36,6 +39,7 @@ func GetUserPassword(email string) string {
   db, err := gorm.Open("postgres", "host=" + host + " port=" + port + " user=" + user + " dbname=" + dbname + " password=" + dbPassword)
   checkErr(err)
   defer db.Close()
+  db.AutoMigrate(&User{})
 
   var user User
   db.Where("email = ?", email).Find(&user)
