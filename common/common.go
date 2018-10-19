@@ -22,8 +22,7 @@ func GetPostgresInfo() string {
 }
 
 func OpenPostgresDB() (db *gorm.DB, err error) {
-	db, err = gorm.Open("postgres", GetPostgresInfo())
-	return
+	return gorm.Open("postgres", GetPostgresInfo())
 }
 
 func OpenPostgresDBLazy() (db *gorm.DB) {
