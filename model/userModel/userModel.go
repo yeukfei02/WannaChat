@@ -16,8 +16,7 @@ type User struct {
 }
 
 func InsertUser(email string, password string) {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
+	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
@@ -30,8 +29,7 @@ func InsertUser(email string, password string) {
 }
 
 func GetUserPassword(email string) string {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
+	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
@@ -42,8 +40,7 @@ func GetUserPassword(email string) string {
 }
 
 func GetAllUsers() Users {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
+	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
@@ -54,9 +51,7 @@ func GetAllUsers() Users {
 }
 
 func GetUserById(userId string) User {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
-	common.CheckErr(err)
+	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&User{})
 

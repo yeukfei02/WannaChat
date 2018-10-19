@@ -13,9 +13,7 @@ type Group struct {
 }
 
 func InsertGroup(groupLabel string) {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
-	common.CheckErr(err)
+	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&Group{})
 
@@ -26,9 +24,7 @@ func InsertGroup(groupLabel string) {
 }
 
 func GetGroupById(groupId string) Group {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
-	common.CheckErr(err)
+	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&Group{})
 
@@ -38,9 +34,7 @@ func GetGroupById(groupId string) Group {
 }
 
 func DeleteGroupById(groupId string) {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
-	common.CheckErr(err)
+	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&Group{})
 

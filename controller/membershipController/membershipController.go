@@ -11,13 +11,13 @@ import (
 
 // request body
 type Membership struct {
-	UserId     int64 `json:"userId"`
-	GroupId    int64 `json:"groupId"`
+	UserId  uint `json:"userId"`
+	GroupId uint `json:"groupId"`
 	jwt.StandardClaims
 }
 
-func CreateMembership(c *gin.Context)  {
-  tokenValid := common.CheckAuth(c)
+func CreateMembership(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		var membership Membership
 		c.BindJSON(&membership)

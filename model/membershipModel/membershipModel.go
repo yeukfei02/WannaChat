@@ -9,14 +9,12 @@ import (
 
 type Membership struct {
 	gorm.Model
-	UserId  int64 `json:"userId" gorm:"foreignkey;"`
-	GroupId int64 `json:"groupId" gorm:"foreignkey;"`
+	UserId  uint `json:"userId" gorm:"foreignkey;"`
+	GroupId uint `json:"groupId" gorm:"foreignkey;"`
 }
 
-func InsertMembership(userId int64, groupId int64) {
-	postgresInfo := common.GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
-	common.CheckErr(err)
+func InsertMembership(userId uint, groupId uint) {
+	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&Membership{})
 

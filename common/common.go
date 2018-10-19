@@ -2,6 +2,7 @@ package common
 
 import (
 	"fmt"
+	"github.com/jinzhu/gorm"
 	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -18,6 +19,17 @@ const (
 
 func GetPostgresInfo() string {
 	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, dbPassword)
+}
+
+func OpenPostgresDB() (db *gorm.DB, err error) {
+	db, err = gorm.Open("postgres", GetPostgresInfo())
+	return
+}
+
+func OpenPostgresDBLazy() (db *gorm.DB) {
+	db, err := gorm.Open("postgres", GetPostgresInfo())
+	CheckErr(err)
+	return
 }
 
 func CheckAuth(c *gin.Context) bool {
