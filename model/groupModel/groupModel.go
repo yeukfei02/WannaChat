@@ -27,6 +27,17 @@ func InsertGroup(label string) {
 	db.Create(&group)
 }
 
+func DeleteGroup(groupId string) {
+	postgresInfo := common.GetPostgresInfo()
+	db, err := gorm.Open("postgres", postgresInfo)
+	checkErr(err)
+	defer db.Close()
+
+	db.AutoMigrate(&Group{})
+
+	db.Where("groupId = ?", groupId).Delete(&Group{})
+}
+
 func checkErr(err error) {
 	if err != nil {
 		fmt.Println("error = " + err.Error())
