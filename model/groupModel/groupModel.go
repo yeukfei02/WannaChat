@@ -13,7 +13,7 @@ type Group struct {
 	GroupLabel string `json:"groupLabel" gorm:"type:varchar(255); not null;"`
 }
 
-func InsertGroup(label string) {
+func InsertGroup(label string) int {
 	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
 	checkErr(err)
@@ -25,6 +25,7 @@ func InsertGroup(label string) {
 		GroupLabel: label,
 	}
 	db.Create(&group)
+	return group.GroupId
 }
 
 func DeleteGroup(groupId string) {

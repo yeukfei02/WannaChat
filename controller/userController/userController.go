@@ -7,14 +7,14 @@ import (
 
 	"WannaChat/common"
 	"WannaChat/model/userModel"
-	"github.com/dgrijalva/jwt-go"
+	. "github.com/dgrijalva/jwt-go"
 )
 
 // request body
 type User struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
-	jwt.StandardClaims
+	StandardClaims
 }
 
 func Signup(c *gin.Context) {
@@ -37,7 +37,7 @@ func Login(c *gin.Context) {
 	userPasswordFromDb := userModel.GetUserPassword(user.Email)
 
 	if user.Password == userPasswordFromDb {
-		token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
+		token := NewWithClaims(GetSigningMethod("HS256"), &User{
 			Email:    user.Email,
 			Password: user.Password,
 		})

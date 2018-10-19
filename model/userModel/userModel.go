@@ -1,8 +1,7 @@
 package userModel
 
 import (
-	"WannaChat/common"
-	"fmt"
+	. "WannaChat/common"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -18,9 +17,9 @@ type User struct {
 }
 
 func InsertUser(email string, password string) {
-	postgresInfo := common.GetPostgresInfo()
+	postgresInfo := GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	checkErr(err)
+	CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -32,9 +31,9 @@ func InsertUser(email string, password string) {
 }
 
 func GetUserPassword(email string) string {
-	postgresInfo := common.GetPostgresInfo()
+	postgresInfo := GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	checkErr(err)
+	CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -44,9 +43,9 @@ func GetUserPassword(email string) string {
 }
 
 func GetAllUsers() Users {
-	postgresInfo := common.GetPostgresInfo()
+	postgresInfo := GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	checkErr(err)
+	CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -56,9 +55,9 @@ func GetAllUsers() Users {
 }
 
 func GetUserById(userId string) User {
-	postgresInfo := common.GetPostgresInfo()
+	postgresInfo := GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	checkErr(err)
+	CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -67,8 +66,14 @@ func GetUserById(userId string) User {
 	return user
 }
 
-func checkErr(err error) {
-	if err != nil {
-		fmt.Println("error = " + err.Error())
-	}
+func GetUserByEmail(email string) User {
+	postgresInfo := GetPostgresInfo()
+	db, err := gorm.Open("postgres", postgresInfo)
+	CheckErr(err)
+	defer db.Close()
+	db.AutoMigrate(&User{})
+
+	var user User
+	db.Where("email = ?", email).Find(&user)
+	return user
 }

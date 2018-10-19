@@ -23,7 +23,7 @@ func CheckAuth(c *gin.Context) bool {
 		token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
 			return []byte("secret"), nil
 		})
-		checkErr(err)
+		CheckErr(err)
 
 		tokenValid = token.Valid
 	}
@@ -31,12 +31,12 @@ func CheckAuth(c *gin.Context) bool {
 	return tokenValid
 }
 
-func checkErr(err error) {
+func GetPostgresInfo() string {
+	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
+}
+
+func CheckErr(err error) {
 	if err != nil {
 		fmt.Println("error = " + err.Error())
 	}
-}
-
-func GetPostgresInfo() string {
-	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
 }
