@@ -1,30 +1,42 @@
 package common
 
 import (
-  "fmt"
-  "github.com/gin-gonic/gin"
-  "strings"
-  jwt "github.com/dgrijalva/jwt-go"
+	"fmt"
+	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
+	"strings"
+)
+
+const (
+	host       = "ec2-184-73-197-211.compute-1.amazonaws.com"
+	port       = "5432"
+	user       = "nfsqmmqiirrfxf"
+	dbname     = "d9qd4thbsdmqkp"
+	dbPassword = "0f4a0aa4b34a48fd5586772b743de5abeac903bec98ce98e44c1ca2bd6a7ac07"
 )
 
 func CheckAuth(c *gin.Context) bool {
-  tokenValid := false
-  if len(c.Request.Header.Get("Authorization")) > 0 {
-	  requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
+	tokenValid := false
+	if len(c.Request.Header.Get("Authorization")) > 0 {
+		requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
 
-	  token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
-	    return []byte("secret"), nil
-	  })
-	  checkErr(err)
+		token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
+			return []byte("secret"), nil
+		})
+		checkErr(err)
 
-    tokenValid = token.Valid
-  }
+		tokenValid = token.Valid
+	}
 
-  return tokenValid
+	return tokenValid
 }
 
 func checkErr(err error) {
-  if (err != nil) {
-    fmt.Println("error = " + err.Error())
-  }
+	if err != nil {
+		fmt.Println("error = " + err.Error())
+	}
+}
+
+func GetPostgresInfo() string {
+	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
 }

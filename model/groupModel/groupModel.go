@@ -1,6 +1,8 @@
 package groupModel
 
 import (
+	"WannaChat/common"
+	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -8,6 +10,25 @@ import (
 type Group struct {
 	gorm.Model
 	GroupId    int    `json:"groupId" gorm:"primary_key; auto_increment;"`
-	UserEmail  string `json:"userEmail" gorm:"type:varchar(255); not null;"`
 	GroupLabel string `json:"groupLabel" gorm:"type:varchar(255); not null;"`
+}
+
+func InsertGroup(label string) {
+	postgresInfo := common.GetPostgresInfo()
+	db, err := gorm.Open("postgres", postgresInfo)
+	checkErr(err)
+	defer db.Close()
+
+	db.AutoMigrate(&Group{})
+
+	group := Group{
+		GroupLabel: label,
+	}
+	db.Create(&group)
+}
+
+func checkErr(err error) {
+	if err != nil {
+		fmt.Println("error = " + err.Error())
+	}
 }
