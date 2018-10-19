@@ -1,7 +1,6 @@
 package membershipController
 
 import (
-	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"time"
 
@@ -13,7 +12,6 @@ import (
 type Membership struct {
 	UserId  uint `json:"userId"`
 	GroupId uint `json:"groupId"`
-	jwt.StandardClaims
 }
 
 func CreateMembership(c *gin.Context) {

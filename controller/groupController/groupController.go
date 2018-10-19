@@ -1,7 +1,6 @@
 package groupController
 
 import (
-	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"time"
 
@@ -12,7 +11,6 @@ import (
 // request body
 type Group struct {
 	GroupLabel string `json:"groupLabel"`
-	jwt.StandardClaims
 }
 
 func CreateGroup(c *gin.Context) {
