@@ -1,25 +1,24 @@
 package userModel
 
 import (
-	. "WannaChat/common"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+
+	"WannaChat/common"
 )
 
 type Users []User
 
 type User struct {
 	gorm.Model
-	UserId   int    `json:"userId" gorm:"primary_key; auto_increment;"`
 	Email    string `json:"email" gorm:"type:varchar(255); not null;"`
 	Password string `json:"password" gorm:"type:varchar(255); not null;"`
 }
 
 func InsertUser(email string, password string) {
-	postgresInfo := GetPostgresInfo()
+	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	CheckErr(err)
+	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -31,9 +30,9 @@ func InsertUser(email string, password string) {
 }
 
 func GetUserPassword(email string) string {
-	postgresInfo := GetPostgresInfo()
+	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	CheckErr(err)
+	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -43,9 +42,9 @@ func GetUserPassword(email string) string {
 }
 
 func GetAllUsers() Users {
-	postgresInfo := GetPostgresInfo()
+	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	CheckErr(err)
+	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
@@ -55,25 +54,13 @@ func GetAllUsers() Users {
 }
 
 func GetUserById(userId string) User {
-	postgresInfo := GetPostgresInfo()
+	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	CheckErr(err)
+	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
 	var user User
 	db.Where("ID = ?", userId).Find(&user)
-	return user
-}
-
-func GetUserByEmail(email string) User {
-	postgresInfo := GetPostgresInfo()
-	db, err := gorm.Open("postgres", postgresInfo)
-	CheckErr(err)
-	defer db.Close()
-	db.AutoMigrate(&User{})
-
-	var user User
-	db.Where("email = ?", email).Find(&user)
 	return user
 }

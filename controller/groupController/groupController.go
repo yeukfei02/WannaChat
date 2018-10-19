@@ -1,37 +1,68 @@
 package groupController
 
 import (
+	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
+	"time"
+
 	"WannaChat/common"
 	"WannaChat/model/groupModel"
-	"WannaChat/model/membershipModel"
-	"WannaChat/model/userModel"
-	. "github.com/dgrijalva/jwt-go"
-	. "github.com/gin-gonic/gin"
 )
 
 // request body
 type Group struct {
-	Email      string `json:"email"`
-	GroupLabel string `json:"group_label"`
-	StandardClaims
+	GroupLabel string `json:"groupLabel"`
+	jwt.StandardClaims
 }
 
-//Auth Required
-func CreateNewGroup(c *Context) {
+func CreateGroup(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		var group Group
 		c.BindJSON(&group)
 
-		var user = userModel.GetUserByEmail(group.Email)
-		var groupID = groupModel.InsertGroup(group.GroupLabel)
-		membershipModel.InsertMembership(user.UserId, groupID)
+		groupModel.InsertGroup(group.GroupLabel)
 
-		c.JSON(200, H{
-			"message": "group created!",
+		c.JSON(200, gin.H{
+			"message":         "group created!",
+			"group":           group,
+			"createdDateTime": time.Now(),
 		})
 	} else {
-		c.JSON(404, H{
+		c.JSON(404, gin.H{
+			"message": "wrong or missing token!",
+		})
+	}
+}
+
+func GetGroupById(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
+	if tokenValid {
+		groupId := c.Param("id")
+		group := groupModel.GetGroupById(groupId)
+
+		c.JSON(200, gin.H{
+			"message": "get group by id!",
+			"group":   group,
+		})
+	} else {
+		c.JSON(404, gin.H{
+			"message": "wrong or missing token!",
+		})
+	}
+}
+
+func DeleteGroupById(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
+	if tokenValid {
+		groupId := c.Param("id")
+		groupModel.DeleteGroupById(groupId)
+
+		c.JSON(200, gin.H{
+			"message": "delete group by id!",
+		})
+	} else {
+		c.JSON(404, gin.H{
 			"message": "wrong or missing token!",
 		})
 	}

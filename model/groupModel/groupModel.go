@@ -1,46 +1,48 @@
 package groupModel
 
 import (
-	"WannaChat/common"
-	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+
+	"WannaChat/common"
 )
 
 type Group struct {
 	gorm.Model
-	GroupId    int    `json:"groupId" gorm:"primary_key; auto_increment;"`
 	GroupLabel string `json:"groupLabel" gorm:"type:varchar(255); not null;"`
 }
 
-func InsertGroup(label string) int {
+func InsertGroup(groupLabel string) {
 	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	checkErr(err)
+	common.CheckErr(err)
 	defer db.Close()
-
 	db.AutoMigrate(&Group{})
 
 	group := Group{
-		GroupLabel: label,
+		GroupLabel: groupLabel,
 	}
 	db.Create(&group)
-	return group.GroupId
 }
 
-func DeleteGroup(groupId string) {
+func GetGroupById(groupId string) Group {
 	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	checkErr(err)
+	common.CheckErr(err)
 	defer db.Close()
-
 	db.AutoMigrate(&Group{})
 
-	db.Where("groupId = ?", groupId).Delete(&Group{})
+	var group Group
+	db.Where("ID = ?", groupId).Find(&group)
+	return group
 }
 
-func checkErr(err error) {
-	if err != nil {
-		fmt.Println("error = " + err.Error())
-	}
+func DeleteGroupById(groupId string) {
+	postgresInfo := common.GetPostgresInfo()
+	db, err := gorm.Open("postgres", postgresInfo)
+	common.CheckErr(err)
+	defer db.Close()
+	db.AutoMigrate(&Group{})
+
+	db.Where("ID = ?", groupId).Delete(&Group{})
 }

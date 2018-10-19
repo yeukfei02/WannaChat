@@ -2,18 +2,23 @@ package common
 
 import (
 	"fmt"
+	"strings"
+
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"strings"
 )
 
 const (
 	host       = "ec2-184-73-197-211.compute-1.amazonaws.com"
 	port       = "5432"
 	user       = "nfsqmmqiirrfxf"
-	dbname     = "d9qd4thbsdmqkp"
+	dbName     = "d9qd4thbsdmqkp"
 	dbPassword = "0f4a0aa4b34a48fd5586772b743de5abeac903bec98ce98e44c1ca2bd6a7ac07"
 )
+
+func GetPostgresInfo() string {
+	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, dbPassword)
+}
 
 func CheckAuth(c *gin.Context) bool {
 	tokenValid := false
@@ -29,10 +34,6 @@ func CheckAuth(c *gin.Context) bool {
 	}
 
 	return tokenValid
-}
-
-func GetPostgresInfo() string {
-	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbname, dbPassword)
 }
 
 func CheckErr(err error) {

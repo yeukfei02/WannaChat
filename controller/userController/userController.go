@@ -1,20 +1,19 @@
 package userController
 
 import (
-	"fmt"
+	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"time"
 
 	"WannaChat/common"
 	"WannaChat/model/userModel"
-	. "github.com/dgrijalva/jwt-go"
 )
 
 // request body
 type User struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
-	StandardClaims
+	jwt.StandardClaims
 }
 
 func Signup(c *gin.Context) {
@@ -37,12 +36,12 @@ func Login(c *gin.Context) {
 	userPasswordFromDb := userModel.GetUserPassword(user.Email)
 
 	if user.Password == userPasswordFromDb {
-		token := NewWithClaims(GetSigningMethod("HS256"), &User{
+		token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
 			Email:    user.Email,
 			Password: user.Password,
 		})
 		tokenString, err := token.SignedString([]byte("secret"))
-		checkErr(err)
+		common.CheckErr(err)
 
 		c.JSON(200, gin.H{
 			"message":         "login success!",
@@ -87,11 +86,5 @@ func GetUserById(c *gin.Context) {
 		c.JSON(404, gin.H{
 			"message": "wrong or missing token!",
 		})
-	}
-}
-
-func checkErr(err error) {
-	if err != nil {
-		fmt.Println("error = " + err.Error())
 	}
 }

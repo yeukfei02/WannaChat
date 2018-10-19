@@ -1,24 +1,23 @@
 package membershipModel
 
 import (
-	. "WannaChat/common"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+
+	"WannaChat/common"
 )
 
 type Membership struct {
 	gorm.Model
-	MembershipId int `json:"membershipId" gorm:"primary_key; auto_increment;"`
-	UserId       int `json:"userId" gorm:"foreignkey;"`
-	GroupId      int `json:"groupId" gorm:"foreignkey;"`
+	UserId  int64 `json:"userId" gorm:"foreignkey;"`
+	GroupId int64 `json:"groupId" gorm:"foreignkey;"`
 }
 
-func InsertMembership(userId int, groupId int) {
-	postgresInfo := GetPostgresInfo()
+func InsertMembership(userId int64, groupId int64) {
+	postgresInfo := common.GetPostgresInfo()
 	db, err := gorm.Open("postgres", postgresInfo)
-	CheckErr(err)
+	common.CheckErr(err)
 	defer db.Close()
-
 	db.AutoMigrate(&Membership{})
 
 	membership := Membership{
