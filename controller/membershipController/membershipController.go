@@ -50,12 +50,12 @@ func CreateMembership(c *gin.Context) {
 func GetAllMemberships(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		membershipsList := membershipModel.GetAllGroups()
+		membershipsList := membershipModel.GetAllMemberships()
 
 		c.JSON(200, gin.H{
-			"message": 					"get all memberships!",
-			"membershipsList":  membershipsList,
-			"count":   					len(membershipsList),
+			"message": 			"get all memberships!",
+			"memberships":  membershipsList,
+			"count":   			len(membershipsList),
 		})
 	} else {
 		c.JSON(404, gin.H{

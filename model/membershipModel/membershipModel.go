@@ -27,7 +27,7 @@ func InsertMembership(userId uint, groupId uint) {
 	db.Create(&membership)
 }
 
-func GetAllGroups() Memberships {
+func GetAllMemberships() Memberships {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&Membership{})
