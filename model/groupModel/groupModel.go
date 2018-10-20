@@ -7,6 +7,8 @@ import (
 	"WannaChat/common"
 )
 
+type Groups []Group
+
 type Group struct {
 	gorm.Model
 	GroupLabel string `json:"groupLabel" gorm:"type:varchar(255); not null;"`
@@ -21,6 +23,16 @@ func InsertGroup(groupLabel string) {
 		GroupLabel: groupLabel,
 	}
 	db.Create(&group)
+}
+
+func GetAllGroups() Groups {
+	db := common.OpenPostgresDBLazy()
+	defer db.Close()
+	db.AutoMigrate(&Group{})
+
+	var groups Groups
+	db.Find(&groups)
+	return groups
 }
 
 func GetGroupById(groupId string) Group {

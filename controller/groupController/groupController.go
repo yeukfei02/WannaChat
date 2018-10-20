@@ -33,6 +33,23 @@ func CreateGroup(c *gin.Context) {
 	}
 }
 
+func GetAllGroups(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
+	if tokenValid {
+		groupsList := groupModel.GetAllGroups()
+
+		c.JSON(200, gin.H{
+			"message": "get all groups!",
+			"groups":  groupsList,
+			"count":   len(groupsList),
+		})
+	} else {
+		c.JSON(404, gin.H{
+			"message": "wrong or missing token!",
+		})
+	}
+}
+
 func GetGroupById(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {

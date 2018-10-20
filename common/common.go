@@ -17,16 +17,16 @@ const (
 	dbPassword = "0f4a0aa4b34a48fd5586772b743de5abeac903bec98ce98e44c1ca2bd6a7ac07"
 )
 
-func GetPostgresInfo() string {
+func getPostgresInfo() string {
 	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, dbPassword)
 }
 
 func OpenPostgresDB() (db *gorm.DB, err error) {
-	return gorm.Open("postgres", GetPostgresInfo())
+	return gorm.Open("postgres", getPostgresInfo())
 }
 
 func OpenPostgresDBLazy() (db *gorm.DB) {
-	db, err := gorm.Open("postgres", GetPostgresInfo())
+	db, err := gorm.Open("postgres", getPostgresInfo())
 	CheckErr(err)
 	return
 }

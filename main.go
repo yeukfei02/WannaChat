@@ -23,6 +23,7 @@ func main() {
 
 		// group
 		api.POST("/group/create-group", groupController.CreateGroup)
+		api.GET("/group", groupController.GetAllGroups)
 		api.GET("/group/:id", groupController.GetGroupById)
 		api.DELETE("/group/:id", groupController.DeleteGroupById)
 
