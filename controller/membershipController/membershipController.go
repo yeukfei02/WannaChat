@@ -1,10 +1,13 @@
 package membershipController
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"time"
 
 	"WannaChat/common"
+	"WannaChat/model/userModel"
+	"WannaChat/model/groupModel"
 	"WannaChat/model/membershipModel"
 )
 
@@ -20,12 +23,39 @@ func CreateMembership(c *gin.Context) {
 		var membership Membership
 		c.BindJSON(&membership)
 
-		membershipModel.InsertMembership(membership.UserId, membership.GroupId)
+		user := userModel.GetUserById(fmt.Sprint(membership.UserId))
+		group := groupModel.GetGroupById(fmt.Sprint(membership.GroupId))
+		fmt.Println(user.ID, group.ID)
+
+		if (user.ID > 0 && group.ID > 0) {
+			membershipModel.InsertMembership(membership.UserId, membership.GroupId)
+
+			c.JSON(200, gin.H{
+				"message":         "membership created!",
+				"membership":      membership,
+				"createdDateTime": time.Now(),
+			})
+		} else {
+			c.JSON(400, gin.H{
+				"message": "userId or groupId not found!",
+			})
+		}
+	} else {
+		c.JSON(404, gin.H{
+			"message": "wrong or missing token!",
+		})
+	}
+}
+
+func GetAllMemberships(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
+	if tokenValid {
+		membershipsList := membershipModel.GetAllGroups()
 
 		c.JSON(200, gin.H{
-			"message":         "membership created!",
-			"membership":      membership,
-			"createdDateTime": time.Now(),
+			"message": 					"get all memberships!",
+			"membershipsList":  membershipsList,
+			"count":   					len(membershipsList),
 		})
 	} else {
 		c.JSON(404, gin.H{

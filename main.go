@@ -28,6 +28,7 @@ func main() {
 		api.DELETE("/group/:id", groupController.DeleteGroupById)
 
 		// membership
+		api.GET("/membership", membershipController.GetAllMemberships)
 		api.POST("/membership/create-membership", membershipController.CreateMembership)
 	}
 
