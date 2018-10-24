@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/go/src/app
-      - /go/src/app/vendor
+      - .:/go/src/WannaChat
+      - /go/src/WannaChat/vendor
     ports:
       - 8080:8080
     links:
