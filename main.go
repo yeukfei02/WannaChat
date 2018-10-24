@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	cors "github.com/rs/cors/wrapper/gin"
 
-	"WannaChat/controller/userController"
 	"WannaChat/controller/groupController"
 	"WannaChat/controller/membershipController"
+	"WannaChat/controller/userController"
 )
 
 func main() {

@@ -1,6 +1,7 @@
 package userController
 
 import (
+	"github.com/badoux/checkmail"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -20,37 +21,63 @@ func Signup(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
 
-	userModel.InsertUser(user.Email, user.Password)
+	if user.Email != "" && user.Password != "" {
+		err := checkmail.ValidateFormat(user.Email)
+		if err == nil {
+			userModel.InsertUser(user.Email, user.Password)
 
-	c.JSON(200, gin.H{
-		"message":         "signup!",
-		"user":            user,
-		"createdDateTime": time.Now(),
-	})
+			c.JSON(200, gin.H{
+				"message":         "signup!",
+				"user":            user,
+				"createdDateTime": time.Now(),
+			})
+		} else {
+			c.JSON(400, gin.H{
+				"message": "invalid email format!",
+			})
+		}
+	} else {
+		c.JSON(400, gin.H{
+			"message": "wrong request format!",
+		})
+	}
 }
 
 func Login(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
 
-	userPasswordFromDb := userModel.GetUserPassword(user.Email)
+	if user.Email != "" && user.Password != "" {
+		err := checkmail.ValidateFormat(user.Email)
+		if err == nil {
+			userPasswordFromDb := userModel.GetUserPassword(user.Email)
 
-	if user.Password == userPasswordFromDb {
-		token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
-			Email:    user.Email,
-			Password: user.Password,
-		})
-		tokenString, err := token.SignedString([]byte("secret"))
-		common.CheckErr(err)
+			if user.Password == userPasswordFromDb {
+				token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
+					Email:    user.Email,
+					Password: user.Password,
+				})
+				tokenString, err := token.SignedString([]byte("secret"))
+				common.CheckErr(err)
 
-		c.JSON(200, gin.H{
-			"message":         "login success!",
-			"token":           tokenString,
-			"createdDateTime": time.Now(),
-		})
+				c.JSON(200, gin.H{
+					"message":         "login success!",
+					"token":           tokenString,
+					"createdDateTime": time.Now(),
+				})
+			} else {
+				c.JSON(400, gin.H{
+					"message": "login fail!",
+				})
+			}
+		} else {
+			c.JSON(400, gin.H{
+				"message": "invalid email format!",
+			})
+		}
 	} else {
 		c.JSON(400, gin.H{
-			"message": "login fail!",
+			"message": "wrong request format!",
 		})
 	}
 }

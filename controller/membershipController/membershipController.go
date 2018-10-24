@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"WannaChat/common"
-	"WannaChat/model/userModel"
 	"WannaChat/model/groupModel"
 	"WannaChat/model/membershipModel"
+	"WannaChat/model/userModel"
 )
 
 // request body
@@ -27,7 +27,7 @@ func CreateMembership(c *gin.Context) {
 		group := groupModel.GetGroupById(fmt.Sprint(membership.GroupId))
 		fmt.Println(user.ID, group.ID)
 
-		if (user.ID > 0 && group.ID > 0) {
+		if user.ID > 0 && group.ID > 0 {
 			membershipModel.InsertMembership(membership.UserId, membership.GroupId)
 
 			c.JSON(200, gin.H{
@@ -53,9 +53,9 @@ func GetAllMemberships(c *gin.Context) {
 		membershipsList := membershipModel.GetAllMemberships()
 
 		c.JSON(200, gin.H{
-			"message": 			"get all memberships!",
-			"memberships":  membershipsList,
-			"count":   			len(membershipsList),
+			"message":     "get all memberships!",
+			"memberships": membershipsList,
+			"count":       len(membershipsList),
 		})
 	} else {
 		c.JSON(404, gin.H{
