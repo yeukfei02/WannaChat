@@ -7,8 +7,6 @@ import (
 	"WannaChat/common"
 )
 
-type Memberships []Membership
-
 type Membership struct {
 	gorm.Model
 	UserId  uint `json:"userId" gorm:"foreignkey;"`
@@ -27,12 +25,12 @@ func InsertMembership(userId uint, groupId uint) {
 	db.Create(&membership)
 }
 
-func GetAllMemberships() Memberships {
+func GetAllMemberships() []Membership {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
 	db.AutoMigrate(&Membership{})
 
-	var memberships Memberships
+	var memberships []Membership
 	db.Find(&memberships)
 	return memberships
 }

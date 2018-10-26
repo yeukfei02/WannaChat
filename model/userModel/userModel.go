@@ -7,8 +7,6 @@ import (
 	"WannaChat/common"
 )
 
-type Users []User
-
 type User struct {
 	gorm.Model
 	Email    string `json:"email" gorm:"type:varchar(255); unique; not null;"`
@@ -39,13 +37,13 @@ func GetUserPassword(email string) string {
 	return user.Password
 }
 
-func GetAllUsers() Users {
+func GetAllUsers() []User {
 	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
 	db.AutoMigrate(&User{})
 
-	var users Users
+	var users []User
 	db.Find(&users)
 	return users
 }
