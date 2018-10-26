@@ -17,7 +17,7 @@ func InsertUser(email string, password string) {
 	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
-	db.AutoMigrate(&User{})
+	common.CheckTableExists(db, &User{})
 
 	user := User{
 		Email:    email,
@@ -30,7 +30,7 @@ func GetUserPassword(email string) string {
 	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
-	db.AutoMigrate(&User{})
+	common.CheckTableExists(db, &User{})
 
 	var user User
 	db.Where("email = ?", email).Find(&user)
@@ -41,7 +41,7 @@ func GetAllUsers() []User {
 	db, err := common.OpenPostgresDB()
 	common.CheckErr(err)
 	defer db.Close()
-	db.AutoMigrate(&User{})
+	common.CheckTableExists(db, &User{})
 
 	var users []User
 	db.Find(&users)
@@ -51,7 +51,7 @@ func GetAllUsers() []User {
 func GetUserById(userId string) User {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&User{})
+	common.CheckTableExists(db, &User{})
 
 	var user User
 	db.Where("ID = ?", userId).Find(&user)

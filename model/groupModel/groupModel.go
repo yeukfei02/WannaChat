@@ -15,7 +15,7 @@ type Group struct {
 func InsertGroup(groupLabel string) {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&Group{})
+	common.CheckTableExists(db, &Group{})
 
 	group := Group{
 		GroupLabel: groupLabel,
@@ -26,7 +26,7 @@ func InsertGroup(groupLabel string) {
 func GetAllGroups() []Group {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&Group{})
+	common.CheckTableExists(db, &Group{})
 
 	var groups []Group
 	db.Find(&groups)
@@ -36,7 +36,7 @@ func GetAllGroups() []Group {
 func GetGroupById(groupId string) Group {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&Group{})
+	common.CheckTableExists(db, &Group{})
 
 	var group Group
 	db.Where("ID = ?", groupId).Find(&group)
@@ -46,7 +46,7 @@ func GetGroupById(groupId string) Group {
 func DeleteGroupById(groupId string) {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&Group{})
+	common.CheckTableExists(db, &Group{})
 
 	db.Where("ID = ?", groupId).Delete(&Group{})
 }

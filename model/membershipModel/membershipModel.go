@@ -16,7 +16,7 @@ type Membership struct {
 func InsertMembership(userId uint, groupId uint) {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&Membership{})
+	common.CheckTableExists(db, &Membership{})
 
 	membership := Membership{
 		UserId:  userId,
@@ -28,7 +28,7 @@ func InsertMembership(userId uint, groupId uint) {
 func GetAllMemberships() []Membership {
 	db := common.OpenPostgresDBLazy()
 	defer db.Close()
-	db.AutoMigrate(&Membership{})
+	common.CheckTableExists(db, &Membership{})
 
 	var memberships []Membership
 	db.Find(&memberships)

@@ -31,6 +31,12 @@ func OpenPostgresDBLazy() (db *gorm.DB) {
 	return
 }
 
+func CheckTableExists(db *gorm.DB, table interface{}) {
+	if (!db.HasTable(table)) {
+		db.AutoMigrate(table)
+	}
+}
+
 func CheckAuth(c *gin.Context) bool {
 	tokenValid := false
 	if len(c.Request.Header.Get("Authorization")) > 0 {
