@@ -3,21 +3,23 @@ package common
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	"os"
 	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-)
-
-const (
-	host       = "ec2-184-73-197-211.compute-1.amazonaws.com"
-	port       = "5432"
-	user       = "nfsqmmqiirrfxf"
-	dbName     = "d9qd4thbsdmqkp"
-	dbPassword = "0f4a0aa4b34a48fd5586772b743de5abeac903bec98ce98e44c1ca2bd6a7ac07"
+	"github.com/joho/godotenv"
 )
 
 func getPostgresInfo() string {
+	err := godotenv.Load()
+	CheckErr(err)
+	host := os.Getenv("HOST")
+	port := os.Getenv("PORT")
+	user := os.Getenv("USER")
+	dbName := os.Getenv("DB_NAME")
+	dbPassword := os.Getenv("DB_PASSWORD")
+
 	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, dbPassword)
 }
 
@@ -32,7 +34,7 @@ func OpenPostgresDBLazy() (db *gorm.DB) {
 }
 
 func CheckTableExists(db *gorm.DB, table interface{}) {
-	if (!db.HasTable(table)) {
+	if !db.HasTable(table) {
 		db.AutoMigrate(table)
 	}
 }

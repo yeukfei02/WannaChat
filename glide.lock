@@ -1,5 +1,5 @@
-hash: df0bf82837677d126168e0666e1f7d38ad156e170031dc409ff4a5cb86dd06cc
-updated: 2018-10-24T20:28:37.240577+08:00
+hash: c02b09b8b50a56ac1c1df07b3b5438b6610d59ecf5b94c39be48f3772190ea2f
+updated: 2018-11-01T14:49:17.891206+08:00
 imports:
 - name: github.com/badoux/checkmail
   version: 0755fe2dc241caebab64327c352006712f6a55c4
@@ -23,6 +23,8 @@ imports:
   - dialects/postgres
 - name: github.com/jinzhu/inflection
   version: 04140366298a54a039076d798123ffa108fff46c
+- name: github.com/joho/godotenv
+  version: 23d116af351c84513e1946b527c88823e476be13
 - name: github.com/json-iterator/go
   version: 2433035e513208b0f7bd5b50d0aecd889b2c1ff8
 - name: github.com/lib/pq
