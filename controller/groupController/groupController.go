@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"time"
 
-	"WannaChat/common"
+	. "WannaChat/common"
 	"WannaChat/model/groupModel"
 )
 
@@ -14,7 +14,7 @@ type Group struct {
 }
 
 func CreateGroup(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		var group Group
 		c.BindJSON(&group)
@@ -34,7 +34,7 @@ func CreateGroup(c *gin.Context) {
 }
 
 func GetAllGroups(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		groupsList := groupModel.GetAllGroups()
 
@@ -51,7 +51,7 @@ func GetAllGroups(c *gin.Context) {
 }
 
 func GetGroupById(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		groupId := c.Param("id")
 		group := groupModel.GetGroupById(groupId)
@@ -68,7 +68,7 @@ func GetGroupById(c *gin.Context) {
 }
 
 func DeleteGroupById(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		groupId := c.Param("id")
 		groupModel.DeleteGroupById(groupId)

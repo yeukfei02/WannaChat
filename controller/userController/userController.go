@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"time"
 
-	"WannaChat/common"
+	. "WannaChat/common"
 	"WannaChat/model/userModel"
 )
 
@@ -58,7 +58,7 @@ func Login(c *gin.Context) {
 					Password: user.Password,
 				})
 				tokenString, err := token.SignedString([]byte("secret"))
-				common.CheckErr(err)
+				CheckErr(err)
 
 				c.JSON(200, gin.H{
 					"message":         "login success!",
@@ -83,7 +83,7 @@ func Login(c *gin.Context) {
 }
 
 func GetAllUsers(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		usersList := userModel.GetAllUsers()
 
@@ -100,7 +100,7 @@ func GetAllUsers(c *gin.Context) {
 }
 
 func GetUserById(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		userId := c.Param("id")
 		user := userModel.GetUserById(userId)

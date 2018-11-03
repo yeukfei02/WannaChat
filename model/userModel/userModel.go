@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
-	"WannaChat/common"
+	. "WannaChat/common"
 )
 
 type User struct {
@@ -14,10 +14,10 @@ type User struct {
 }
 
 func InsertUser(email string, password string) {
-	db, err := common.OpenPostgresDB()
-	common.CheckErr(err)
+	db, err := OpenPostgresDB()
+	CheckErr(err)
 	defer db.Close()
-	common.CheckTableExists(db, &User{})
+	CheckTableExists(db, &User{})
 
 	user := User{
 		Email:    email,
@@ -27,10 +27,10 @@ func InsertUser(email string, password string) {
 }
 
 func GetUserPassword(email string) string {
-	db, err := common.OpenPostgresDB()
-	common.CheckErr(err)
+	db, err := OpenPostgresDB()
+	CheckErr(err)
 	defer db.Close()
-	common.CheckTableExists(db, &User{})
+	CheckTableExists(db, &User{})
 
 	var user User
 	db.Where("email = ?", email).Find(&user)
@@ -38,10 +38,10 @@ func GetUserPassword(email string) string {
 }
 
 func GetAllUsers() []User {
-	db, err := common.OpenPostgresDB()
-	common.CheckErr(err)
+	db, err := OpenPostgresDB()
+	CheckErr(err)
 	defer db.Close()
-	common.CheckTableExists(db, &User{})
+	CheckTableExists(db, &User{})
 
 	var users []User
 	db.Find(&users)
@@ -49,9 +49,9 @@ func GetAllUsers() []User {
 }
 
 func GetUserById(userId string) User {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &User{})
+	CheckTableExists(db, &User{})
 
 	var user User
 	db.Where("ID = ?", userId).Find(&user)

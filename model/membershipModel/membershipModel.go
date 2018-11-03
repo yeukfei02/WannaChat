@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
-	"WannaChat/common"
+	. "WannaChat/common"
 )
 
 type Membership struct {
@@ -14,9 +14,9 @@ type Membership struct {
 }
 
 func InsertMembership(userId uint, groupId uint) {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &Membership{})
+	CheckTableExists(db, &Membership{})
 
 	membership := Membership{
 		UserId:  userId,
@@ -26,9 +26,9 @@ func InsertMembership(userId uint, groupId uint) {
 }
 
 func GetAllMemberships() []Membership {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &Membership{})
+	CheckTableExists(db, &Membership{})
 
 	var memberships []Membership
 	db.Find(&memberships)

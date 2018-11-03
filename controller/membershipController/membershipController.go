@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"time"
 
-	"WannaChat/common"
+	. "WannaChat/common"
 	"WannaChat/model/groupModel"
 	"WannaChat/model/membershipModel"
 	"WannaChat/model/userModel"
@@ -18,7 +18,7 @@ type Membership struct {
 }
 
 func CreateMembership(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		var membership Membership
 		c.BindJSON(&membership)
@@ -48,7 +48,7 @@ func CreateMembership(c *gin.Context) {
 }
 
 func GetAllMemberships(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := CheckAuth(c)
 	if tokenValid {
 		membershipsList := membershipModel.GetAllMemberships()
 

@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
-	"WannaChat/common"
+	. "WannaChat/common"
 )
 
 type Group struct {
@@ -13,9 +13,9 @@ type Group struct {
 }
 
 func InsertGroup(groupLabel string) {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &Group{})
+	CheckTableExists(db, &Group{})
 
 	group := Group{
 		GroupLabel: groupLabel,
@@ -24,9 +24,9 @@ func InsertGroup(groupLabel string) {
 }
 
 func GetAllGroups() []Group {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &Group{})
+	CheckTableExists(db, &Group{})
 
 	var groups []Group
 	db.Find(&groups)
@@ -34,9 +34,9 @@ func GetAllGroups() []Group {
 }
 
 func GetGroupById(groupId string) Group {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &Group{})
+	CheckTableExists(db, &Group{})
 
 	var group Group
 	db.Where("ID = ?", groupId).Find(&group)
@@ -44,9 +44,9 @@ func GetGroupById(groupId string) Group {
 }
 
 func DeleteGroupById(groupId string) {
-	db := common.OpenPostgresDBLazy()
+	db := OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, &Group{})
+	CheckTableExists(db, &Group{})
 
 	db.Where("ID = ?", groupId).Delete(&Group{})
 }
