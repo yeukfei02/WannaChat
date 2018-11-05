@@ -34,3 +34,13 @@ func GetAllMemberships() []Membership {
 	db.Find(&memberships)
 	return memberships
 }
+
+func GetAllMembershipsInGroup(groupId uint) []Membership {
+	db := OpenPostgresDBLazy()
+	defer db.Close()
+	CheckTableExists(db, &Membership{})
+
+	var memberships []Membership
+	db.Where("GroupId = ?", groupId).Find(&memberships)
+	return memberships
+}
