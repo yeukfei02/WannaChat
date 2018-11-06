@@ -14,8 +14,8 @@ clone the project to your GOPATH/src
 
 check table in postgres
 ```
-$ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U nfsqmmqiirrfxf -d d9qd4thbsdmqkp
-$ 0f4a0aa4b34a48fd5586772b743de5abeac903bec98ce98e44c1ca2bd6a7ac07
+$ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U asgevskdmcckiw -d d7paprak57t9n5
+$ 0e61a105e8512dc32ef63891155ef9dedb71237faf76cf5884b1a6797159bc44
 ```
 
 ```

@@ -23,14 +23,15 @@ func getPostgresInfo() string {
 	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, dbPassword)
 }
 
-func OpenPostgresDB() (db *gorm.DB, err error) {
-	return gorm.Open("postgres", getPostgresInfo())
+func OpenPostgresDB() (*gorm.DB, error) {
+	db, err := gorm.Open("postgres", getPostgresInfo())
+	return db, err
 }
 
-func OpenPostgresDBLazy() (db *gorm.DB) {
+func OpenPostgresDBLazy() *gorm.DB {
 	db, err := gorm.Open("postgres", getPostgresInfo())
 	CheckErr(err)
-	return
+	return db
 }
 
 func CheckTableExists(db *gorm.DB, table interface{}) {
