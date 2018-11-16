@@ -6,7 +6,7 @@ Our goal is to build the greatest collaboration platform for developer, are you 
 
 ### Requirement:
  - install go
- - install glide
+ - install dep
 
 ### Testing and run:
 
@@ -19,8 +19,7 @@ $ 0e61a105e8512dc32ef63891155ef9dedb71237faf76cf5884b1a6797159bc44
 ```
 
 ```
-$ glide install
-$ glide up
+$ dep ensure
 $ go run main.go
 ```
 
