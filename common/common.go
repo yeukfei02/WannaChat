@@ -2,9 +2,10 @@ package common
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"os"
 	"strings"
+
+	"github.com/jinzhu/gorm"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
@@ -16,7 +17,7 @@ func getPostgresInfo() string {
 	CheckErr(err)
 	host := os.Getenv("HOST")
 	port := os.Getenv("PORT")
-	user := os.Getenv("USER")
+	user := os.Getenv("USERNAME")
 	dbName := os.Getenv("DB_NAME")
 	dbPassword := os.Getenv("DB_PASSWORD")
 

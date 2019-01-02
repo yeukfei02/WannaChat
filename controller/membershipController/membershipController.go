@@ -2,8 +2,9 @@ package membershipController
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"time"
+
+	"github.com/gin-gonic/gin"
 
 	. "WannaChat/common"
 	"WannaChat/model/groupModel"
@@ -30,7 +31,7 @@ func CreateMembership(c *gin.Context) {
 		if user.ID > 0 && group.ID > 0 {
 			membershipModel.InsertMembership(membership.UserId, membership.GroupId)
 
-			c.JSON(200, gin.H{
+			c.JSON(201, gin.H{
 				"message":         "membership created!",
 				"membership":      membership,
 				"createdDateTime": time.Now(),

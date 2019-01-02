@@ -1,8 +1,9 @@
 package groupController
 
 import (
-	"github.com/gin-gonic/gin"
 	"time"
+
+	"github.com/gin-gonic/gin"
 
 	. "WannaChat/common"
 	"WannaChat/model/groupModel"
@@ -21,7 +22,7 @@ func CreateGroup(c *gin.Context) {
 
 		groupModel.InsertGroup(group.GroupLabel)
 
-		c.JSON(200, gin.H{
+		c.JSON(201, gin.H{
 			"message":         "group created!",
 			"group":           group,
 			"createdDateTime": time.Now(),

@@ -1,10 +1,11 @@
 package userController
 
 import (
+	"time"
+
 	"github.com/badoux/checkmail"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"time"
 
 	. "WannaChat/common"
 	"WannaChat/model/userModel"
@@ -26,7 +27,7 @@ func Signup(c *gin.Context) {
 		if err == nil {
 			userModel.InsertUser(user.Email, user.Password)
 
-			c.JSON(200, gin.H{
+			c.JSON(201, gin.H{
 				"message":         "signup!",
 				"user":            user,
 				"createdDateTime": time.Now(),
@@ -60,7 +61,7 @@ func Login(c *gin.Context) {
 				tokenString, err := token.SignedString([]byte("secret"))
 				CheckErr(err)
 
-				c.JSON(200, gin.H{
+				c.JSON(201, gin.H{
 					"message":         "login success!",
 					"token":           tokenString,
 					"createdDateTime": time.Now(),
