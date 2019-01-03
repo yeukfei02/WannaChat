@@ -31,6 +31,7 @@ func OpenPostgresDB() (*gorm.DB, error) {
 
 func OpenPostgresDBLazy() *gorm.DB {
 	db, err := gorm.Open("postgres", getPostgresInfo())
+	fmt.Println("getPostgresInfo = ", getPostgresInfo())
 	CheckErr(err)
 	return db
 }
