@@ -1,8 +1,8 @@
 package main
 
 import (
+	cors "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	cors "github.com/rs/cors/wrapper/gin"
 
 	"WannaChat/routes/groupRoutes"
 	"WannaChat/routes/membershipRoutes"

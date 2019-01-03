@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:801ee2a0859a55bc95c34976b2fbe360da4a40bb3f9d39ab20bc9725c91ece31"
+  digest = "1:78bf6c6a98a126bcec01b33e0b1e19521663269852a7dc52c38f1d4f84529cb1"
   name = "github.com/badoux/checkmail"
   packages = ["."]
   pruneopts = "UT"
-  revision = "0755fe2dc241caebab64327c352006712f6a55c4"
+  revision = "9661bd69e9ad6fce1f7579022bdab0440807722a"
+  version = "v1.1"
 
 [[projects]]
   digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
@@ -16,6 +16,14 @@
   pruneopts = "UT"
   revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
   version = "v3.2.0"
+
+[[projects]]
+  digest = "1:2b59aca2665ff804f6606c8829eaee133ddd3aefbc841014660d961b0034f888"
+  name = "github.com/gin-contrib/cors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "cf4846e6a636a76237a28d9286f163c132e841bc"
+  version = "v1.2"
 
 [[projects]]
   branch = "master"
@@ -39,22 +47,23 @@
   version = "v1.3.0"
 
 [[projects]]
-  digest = "1:8715cd47fd0fa392884aab36611f25631b1540e7a21c5df171af3e397b42f302"
+  digest = "1:97df918963298c287643883209a2c3f642e6593379f97ab400c2a2e219ab647d"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   pruneopts = "UT"
-  revision = "ddf22928ea3c56eb4292a0adbbf5001b1e8e7d0d"
+  revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
+  version = "v1.2.0"
 
 [[projects]]
-  digest = "1:6895fbe5a10c5aebd1965cac6f6905dcdb21bee01e08912d3ba6a805c2485f6a"
+  digest = "1:7e63b12cdd7bef2c411d736cb67e28134d39f5d236aa1bfb8f3d55e3ad709eca"
   name = "github.com/jinzhu/gorm"
   packages = [
     ".",
     "dialects/postgres",
   ]
   pruneopts = "UT"
-  revision = "6ed508ec6a4ecb3531899a69cbc746ccf65a4166"
-  version = "v1.9.1"
+  revision = "472c70caa40267cb89fd8facb07fe6454b578626"
+  version = "v1.9.2"
 
 [[projects]]
   branch = "master"
@@ -73,11 +82,12 @@
   version = "v1.3.0"
 
 [[projects]]
-  digest = "1:8d44b575d464430d321863488733d08f98b925721fff5b5f7f5011b6848ef135"
+  digest = "1:3e551bbb3a7c0ab2a2bf4660e7fcad16db089fdcfbb44b0199e62838038623ea"
   name = "github.com/json-iterator/go"
   packages = ["."]
   pruneopts = "UT"
-  revision = "2433035e513208b0f7bd5b50d0aecd889b2c1ff8"
+  revision = "1624edc4454b8682399def8740d46db5e4362ba4"
+  version = "v1.1.5"
 
 [[projects]]
   digest = "1:b18ffc558326ebaed3b4a175617f1e12ed4e3f53d6ebfe5ba372a3de16d22278"
@@ -108,37 +118,28 @@
   version = "1.0.3"
 
 [[projects]]
-  digest = "1:c56ad36f5722eb07926c979d5e80676ee007a9e39e7808577b9d87ec92b00460"
+  digest = "1:e32bdbdb7c377a07a9a46378290059822efdce5c8d96fe71940d87cb4f918855"
   name = "github.com/modern-go/reflect2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "94122c33edd36123c84d5368cfb2b69df93a0ec8"
-  version = "v1.0.1"
+  revision = "4b7aa43c6742a2c18fdef89dd197aaae7dac7ccd"
+  version = "1.0.1"
 
 [[projects]]
-  digest = "1:03f5e06d5aae81f1df6415c9c0b735891afacb34a6bc65345f0305484ad3d5d9"
-  name = "github.com/rs/cors"
-  packages = [
-    ".",
-    "wrapper/gin",
-  ]
-  pruneopts = "UT"
-  revision = "9a47f48565a795472d43519dd49aac781f3034fb"
-  version = "v1.6.0"
-
-[[projects]]
-  digest = "1:b91567481ed6a84e7748fd253e36522a0de397dd8e4327f4b60148076b589b0e"
+  digest = "1:03aa6e485e528acb119fb32901cf99582c380225fc7d5a02758e08b180cb56c3"
   name = "github.com/ugorji/go"
   packages = ["codec"]
   pruneopts = "UT"
-  revision = "99ea80c8b19ad777f970258ca09c5c2d5826f0fd"
+  revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
+  version = "v1.1.1"
 
 [[projects]]
-  digest = "1:f45590247caf7c95fcbdbf732384e751d67505486000ecf4524a33bdad90fada"
+  branch = "master"
+  digest = "1:5004e851e5eccde563d17871cd9d11c82e2faa578b1a0de81dc74867ad3845a4"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "2281fa97ef7b0c26324634d5a22f04babdac8713"
+  revision = "82a175fd1598e8a172e58ebdf5ed262bb29129e5"
 
 [[projects]]
   digest = "1:cbc72c4c4886a918d6ab4b95e347ffe259846260f99ebdd8a198c2331cf2b2e9"
@@ -149,12 +150,12 @@
   version = "v8.18.2"
 
 [[projects]]
-  digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
+  digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
-  version = "v2.2.1"
+  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
+  version = "v2.2.2"
 
 [solve-meta]
   analyzer-name = "dep"
@@ -162,11 +163,11 @@
   input-imports = [
     "github.com/badoux/checkmail",
     "github.com/dgrijalva/jwt-go",
+    "github.com/gin-contrib/cors",
     "github.com/gin-gonic/gin",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/postgres",
     "github.com/joho/godotenv",
-    "github.com/rs/cors/wrapper/gin",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
