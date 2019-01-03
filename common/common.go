@@ -16,7 +16,7 @@ func getPostgresInfo() string {
 	err := godotenv.Load()
 	CheckErr(err)
 	host := os.Getenv("HOST")
-	port := os.Getenv("PORT")
+	port := os.Getenv("PORT_NUMBER")
 	user := os.Getenv("USERNAME")
 	dbName := os.Getenv("DB_NAME")
 	dbPassword := os.Getenv("DB_PASSWORD")
@@ -26,6 +26,7 @@ func getPostgresInfo() string {
 
 func OpenPostgresDB() (*gorm.DB, error) {
 	db, err := gorm.Open("postgres", getPostgresInfo())
+	fmt.Println("getPostgresInfo = ", getPostgresInfo())
 	return db, err
 }
 
