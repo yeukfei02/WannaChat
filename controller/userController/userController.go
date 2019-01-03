@@ -22,7 +22,7 @@ func Signup(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
 
-	if user.Email != "" && user.Password != "" {
+	if len(user.Email) > 0 && len(user.Password) > 0 {
 		err := checkmail.ValidateFormat(user.Email)
 		if err == nil {
 			userModel.InsertUser(user.Email, user.Password)
@@ -48,7 +48,7 @@ func Login(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
 
-	if user.Email != "" && user.Password != "" {
+	if len(user.Email) > 0 && len(user.Password) > 0 {
 		err := checkmail.ValidateFormat(user.Email)
 		if err == nil {
 			userPasswordFromDb := userModel.GetUserPassword(user.Email)

@@ -14,8 +14,7 @@ type User struct {
 }
 
 func InsertUser(email string, password string) {
-	db, err := OpenPostgresDB()
-	CheckErr(err)
+	db := OpenPostgresDBLazy()
 	defer db.Close()
 	CheckTableExists(db, &User{})
 
@@ -27,8 +26,7 @@ func InsertUser(email string, password string) {
 }
 
 func GetUserPassword(email string) string {
-	db, err := OpenPostgresDB()
-	CheckErr(err)
+	db := OpenPostgresDBLazy()
 	defer db.Close()
 	CheckTableExists(db, &User{})
 
@@ -38,8 +36,7 @@ func GetUserPassword(email string) string {
 }
 
 func GetAllUsers() []User {
-	db, err := OpenPostgresDB()
-	CheckErr(err)
+	db := OpenPostgresDBLazy()
 	defer db.Close()
 	CheckTableExists(db, &User{})
 
