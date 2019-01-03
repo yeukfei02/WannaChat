@@ -26,13 +26,11 @@ func getPostgresInfo() string {
 
 func OpenPostgresDB() (*gorm.DB, error) {
 	db, err := gorm.Open("postgres", getPostgresInfo())
-	fmt.Println("getPostgresInfo = ", getPostgresInfo())
 	return db, err
 }
 
 func OpenPostgresDBLazy() *gorm.DB {
 	db, err := gorm.Open("postgres", getPostgresInfo())
-	fmt.Println("getPostgresInfo = ", getPostgresInfo())
 	CheckErr(err)
 	return db
 }
