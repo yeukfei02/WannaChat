@@ -9,18 +9,18 @@ import (
 
 type Membership struct {
 	gorm.Model
-	UserId  uint `json:"userId" gorm:"foreignkey;"`
-	GroupId uint `json:"groupId" gorm:"foreignkey;"`
+	UserFk  uint `json:"userFk" gorm:"foreignkey;"`
+	GroupFk uint `json:"groupFk" gorm:"foreignkey;"`
 }
 
-func InsertMembership(userId uint, groupId uint) {
+func InsertMembership(userFk uint, groupFk uint) {
 	db := OpenPostgresDBLazy()
 	defer db.Close()
 	CheckTableExists(db, &Membership{})
 
 	membership := Membership{
-		UserId:  userId,
-		GroupId: groupId,
+		UserFk:  userFk,
+		GroupFk: groupFk,
 	}
 	db.Create(&membership)
 }
@@ -35,12 +35,12 @@ func GetAllMemberships() []Membership {
 	return memberships
 }
 
-func GetAllMembershipsInGroup(groupId uint) []Membership {
+func GetMembershipsByGroupId(groupID string) []Membership {
 	db := OpenPostgresDBLazy()
 	defer db.Close()
 	CheckTableExists(db, &Membership{})
 
 	var memberships []Membership
-	db.Where("GroupId = ?", groupId).Find(&memberships)
+	db.Where("group_fk = ?", groupID).Find(&memberships)
 	return memberships
 }

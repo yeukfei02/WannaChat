@@ -14,8 +14,8 @@ import (
 
 // request body
 type Membership struct {
-	UserId  uint `json:"userId"`
-	GroupId uint `json:"groupId"`
+	UserFk  uint `json:"userFk"`
+	GroupFk uint `json:"groupFk"`
 }
 
 func CreateMembership(c *gin.Context) {
@@ -24,12 +24,13 @@ func CreateMembership(c *gin.Context) {
 		var membership Membership
 		c.BindJSON(&membership)
 
-		user := userModel.GetUserById(fmt.Sprint(membership.UserId))
-		group := groupModel.GetGroupById(fmt.Sprint(membership.GroupId))
-		fmt.Println(user.ID, group.ID)
+		user := userModel.GetUserById(fmt.Sprint(membership.UserFk))
+		group := groupModel.GetGroupById(fmt.Sprint(membership.GroupFk))
+		fmt.Println("userId = ", user.ID)
+		fmt.Println("groupId = ", group.ID)
 
 		if user.ID > 0 && group.ID > 0 {
-			membershipModel.InsertMembership(membership.UserId, membership.GroupId)
+			membershipModel.InsertMembership(membership.UserFk, membership.GroupFk)
 
 			c.JSON(201, gin.H{
 				"message":         "membership created!",
@@ -55,6 +56,24 @@ func GetAllMemberships(c *gin.Context) {
 
 		c.JSON(200, gin.H{
 			"message":     "get all memberships!",
+			"memberships": membershipsList,
+			"count":       len(membershipsList),
+		})
+	} else {
+		c.JSON(404, gin.H{
+			"message": "wrong or missing token!",
+		})
+	}
+}
+
+func GetMembershipsByGroupId(c *gin.Context) {
+	tokenValid := CheckAuth(c)
+	if tokenValid {
+		groupID := c.Query("groupId")
+		membershipsList := membershipModel.GetMembershipsByGroupId(groupID)
+
+		c.JSON(200, gin.H{
+			"message":     "get memberships by group id!",
 			"memberships": membershipsList,
 			"count":       len(membershipsList),
 		})
