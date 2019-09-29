@@ -7,17 +7,18 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	. "WannaChat/common"
+	"WannaChat/common"
 	"WannaChat/model/userModel"
 )
 
-// request body
+// User request body
 type User struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 	jwt.StandardClaims
 }
 
+// Signup controller
 func Signup(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
@@ -44,6 +45,7 @@ func Signup(c *gin.Context) {
 	}
 }
 
+// Login controller
 func Login(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
@@ -59,7 +61,7 @@ func Login(c *gin.Context) {
 					Password: user.Password,
 				})
 				tokenString, err := token.SignedString([]byte("secret"))
-				CheckErr(err)
+				common.CheckErr(err)
 
 				c.JSON(201, gin.H{
 					"message":         "login success!",
@@ -83,8 +85,9 @@ func Login(c *gin.Context) {
 	}
 }
 
+// GetAllUsers controller
 func GetAllUsers(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		usersList := userModel.GetAllUsers()
 
@@ -100,11 +103,12 @@ func GetAllUsers(c *gin.Context) {
 	}
 }
 
-func GetUserById(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+// GetUserByID controller
+func GetUserByID(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		userId := c.Param("id")
-		user := userModel.GetUserById(userId)
+		userID := c.Param("id")
+		user := userModel.GetUserByID(userID)
 
 		c.JSON(200, gin.H{
 			"message": "get user by id!",

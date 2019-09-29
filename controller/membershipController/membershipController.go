@@ -6,26 +6,27 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	. "WannaChat/common"
+	"WannaChat/common"
 	"WannaChat/model/groupModel"
 	"WannaChat/model/membershipModel"
 	"WannaChat/model/userModel"
 )
 
-// request body
+// Membership request body
 type Membership struct {
 	UserFk  uint `json:"userFk"`
 	GroupFk uint `json:"groupFk"`
 }
 
+// CreateMembership controller
 func CreateMembership(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		var membership Membership
 		c.BindJSON(&membership)
 
-		user := userModel.GetUserById(fmt.Sprint(membership.UserFk))
-		group := groupModel.GetGroupById(fmt.Sprint(membership.GroupFk))
+		user := userModel.GetUserByID(fmt.Sprint(membership.UserFk))
+		group := groupModel.GetGroupByID(fmt.Sprint(membership.GroupFk))
 		fmt.Println("userId = ", user.ID)
 		fmt.Println("groupId = ", group.ID)
 
@@ -49,8 +50,9 @@ func CreateMembership(c *gin.Context) {
 	}
 }
 
+// GetAllMemberships controller
 func GetAllMemberships(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		membershipsList := membershipModel.GetAllMemberships()
 
@@ -66,11 +68,12 @@ func GetAllMemberships(c *gin.Context) {
 	}
 }
 
-func GetMembershipsByGroupId(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+// GetMembershipsByGroupID controller
+func GetMembershipsByGroupID(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Query("groupId")
-		membershipsList := membershipModel.GetMembershipsByGroupId(groupID)
+		membershipsList := membershipModel.GetMembershipsByGroupID(groupID)
 
 		c.JSON(200, gin.H{
 			"message":     "get memberships by group id!",

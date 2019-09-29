@@ -5,17 +5,18 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	. "WannaChat/common"
+	"WannaChat/common"
 	"WannaChat/model/groupModel"
 )
 
-// request body
+// Group request body
 type Group struct {
 	GroupLabel string `json:"groupLabel"`
 }
 
+// CreateGroup controller
 func CreateGroup(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		var group Group
 		c.BindJSON(&group)
@@ -34,8 +35,9 @@ func CreateGroup(c *gin.Context) {
 	}
 }
 
+// GetAllGroups controller
 func GetAllGroups(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		groupsList := groupModel.GetAllGroups()
 
@@ -51,11 +53,12 @@ func GetAllGroups(c *gin.Context) {
 	}
 }
 
-func GetGroupById(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+// GetGroupByID controller
+func GetGroupByID(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		groupId := c.Param("id")
-		group := groupModel.GetGroupById(groupId)
+		groupID := c.Param("id")
+		group := groupModel.GetGroupByID(groupID)
 
 		c.JSON(200, gin.H{
 			"message": "get group by id!",
@@ -68,11 +71,12 @@ func GetGroupById(c *gin.Context) {
 	}
 }
 
-func DeleteGroupById(c *gin.Context) {
-	tokenValid := CheckAuth(c)
+// DeleteGroupByID controller
+func DeleteGroupByID(c *gin.Context) {
+	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		groupId := c.Param("id")
-		groupModel.DeleteGroupById(groupId)
+		groupID := c.Param("id")
+		groupModel.DeleteGroupByID(groupID)
 
 		c.JSON(200, gin.H{
 			"message": "delete group by id!",
