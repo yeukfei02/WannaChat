@@ -24,23 +24,27 @@ func getPostgresInfo() string {
 	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, dbPassword)
 }
 
+// OpenPostgresDB common func
 func OpenPostgresDB() (*gorm.DB, error) {
 	db, err := gorm.Open("postgres", getPostgresInfo())
 	return db, err
 }
 
+// OpenPostgresDBLazy common func
 func OpenPostgresDBLazy() *gorm.DB {
 	db, err := gorm.Open("postgres", getPostgresInfo())
 	CheckErr(err)
 	return db
 }
 
+// CheckTableExists common func
 func CheckTableExists(db *gorm.DB, table interface{}) {
 	if !db.HasTable(table) {
 		db.AutoMigrate(table)
 	}
 }
 
+// CheckAuth common func
 func CheckAuth(c *gin.Context) bool {
 	tokenValid := false
 	if len(c.Request.Header.Get("Authorization")) > 0 {
@@ -57,6 +61,7 @@ func CheckAuth(c *gin.Context) bool {
 	return tokenValid
 }
 
+// CheckErr common func
 func CheckErr(err error) {
 	if err != nil {
 		fmt.Println("error = " + err.Error())
