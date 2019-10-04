@@ -7,6 +7,7 @@ Our goal is to build the greatest collaboration platform for developer, are you 
 ### Requirement:
  - install go
  - install dep
+ - install gin (https://github.com/codegangsta/gin)
 
 ### Testing and run:
 
@@ -18,12 +19,19 @@ $ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U asgevskdmcckiw -d d7papr
 $ 0e61a105e8512dc32ef63891155ef9dedb71237faf76cf5884b1a6797159bc44
 ```
 
+if use `go` to start server
 ```
 $ dep ensure
 $ go run main.go
 ```
-
 open localhost:8080
+
+if use `gin` to start server
+```
+$ dep ensure
+$ gin run main.go
+```
+open localhost:3000
 
 ### Docker:
 
