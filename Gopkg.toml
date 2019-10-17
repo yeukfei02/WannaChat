@@ -49,6 +49,10 @@
   version = "1.1.0"
 
 [[constraint]]
+  branch = "master"
+  name = "github.com/danielkov/gin-helmet"
+
+[[constraint]]
   name = "github.com/gin-contrib/gzip"
   version = "0.0.1"
 

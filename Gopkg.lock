@@ -10,6 +10,14 @@
   version = "v1.1"
 
 [[projects]]
+  branch = "master"
+  digest = "1:5b32fb97f9d0eb3fc2d13aa1e75984750f255a2fece842c7206a9af1207f8ee0"
+  name = "github.com/danielkov/gin-helmet"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "1387e224435edcb84dfc4bfc81fe56fc807ca98b"
+
+[[projects]]
   digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
   name = "github.com/dgrijalva/jwt-go"
   packages = ["."]
@@ -171,6 +179,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/badoux/checkmail",
+    "github.com/danielkov/gin-helmet",
     "github.com/dgrijalva/jwt-go",
     "github.com/gin-contrib/cors",
     "github.com/gin-contrib/gzip",
