@@ -1,26 +1,18 @@
 package membershipModel
 
 import (
+	"WannaChat/common"
+	"WannaChat/schema"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-
-	"WannaChat/common"
 )
 
-// Membership model
-type Membership struct {
-	gorm.Model
-	UserFk  uint `json:"userFk" gorm:"foreignkey;"`
-	GroupFk uint `json:"groupFk" gorm:"foreignkey;"`
-}
+var db *gorm.DB = common.OpenPostgresDBLazy()
 
 // InsertMembership model
 func InsertMembership(userFk uint, groupFk uint) {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &Membership{})
-
-	membership := Membership{
+	membership := schema.Membership{
 		UserFk:  userFk,
 		GroupFk: groupFk,
 	}
@@ -28,23 +20,15 @@ func InsertMembership(userFk uint, groupFk uint) {
 }
 
 // GetAllMemberships model
-func GetAllMemberships() []Membership {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &Membership{})
-
-	var memberships []Membership
+func GetAllMemberships() []schema.Membership {
+	var memberships []schema.Membership
 	db.Find(&memberships)
 	return memberships
 }
 
 // GetMembershipsByGroupID model
-func GetMembershipsByGroupID(groupID string) []Membership {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &Membership{})
-
-	var memberships []Membership
+func GetMembershipsByGroupID(groupID string) []schema.Membership {
+	var memberships []schema.Membership
 	db.Where("group_fk = ?", groupID).Find(&memberships)
 	return memberships
 }

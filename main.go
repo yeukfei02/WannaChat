@@ -6,16 +6,28 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 
+	"WannaChat/common"
 	"WannaChat/routes/groupRoutes"
 	"WannaChat/routes/membershipRoutes"
 	"WannaChat/routes/userRoutes"
+	"WannaChat/schema"
 )
+
+func connectDBAndCreateTable(table interface{}) {
+	db := common.OpenPostgresDBLazy()
+	defer db.Close()
+	common.CheckTableExists(db, table)
+}
 
 func main() {
 	r := gin.Default()
 	r.Use(cors.Default())
 	r.Use(helmet.Default())
 	r.Use(gzip.Gzip(gzip.DefaultCompression))
+
+	connectDBAndCreateTable(&schema.User{})
+	connectDBAndCreateTable(&schema.Group{})
+	connectDBAndCreateTable(&schema.Membership{})
 
 	userRoutes.Routes(r)
 	groupRoutes.Routes(r)

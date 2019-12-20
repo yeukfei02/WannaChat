@@ -1,26 +1,18 @@
 package userModel
 
 import (
+	"WannaChat/common"
+	"WannaChat/schema"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-
-	"WannaChat/common"
 )
 
-// User model
-type User struct {
-	gorm.Model
-	Email    string `json:"email" gorm:"type:varchar(255); unique; not null;"`
-	Password string `json:"password" gorm:"type:varchar(255); not null;"`
-}
+var db *gorm.DB = common.OpenPostgresDBLazy()
 
 // InsertUser model
 func InsertUser(email string, password string) {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &User{})
-
-	user := User{
+	user := schema.User{
 		Email:    email,
 		Password: password,
 	}
@@ -29,33 +21,21 @@ func InsertUser(email string, password string) {
 
 // GetUserPassword model
 func GetUserPassword(email string) string {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &User{})
-
-	var user User
+	var user schema.User
 	db.Where("email = ?", email).Find(&user)
 	return user.Password
 }
 
 // GetAllUsers model
-func GetAllUsers() []User {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &User{})
-
-	var users []User
+func GetAllUsers() []schema.User {
+	var users []schema.User
 	db.Find(&users)
 	return users
 }
 
 // GetUserByID model
-func GetUserByID(userID string) User {
-	db := common.OpenPostgresDBLazy()
-	defer db.Close()
-	common.CheckTableExists(db, &User{})
-
-	var user User
+func GetUserByID(userID string) schema.User {
+	var user schema.User
 	db.Where("ID = ?", userID).Find(&user)
 	return user
 }
