@@ -1,15 +1,14 @@
 # WannaChat
 WannaChat - the ultimate collaboration platform for developers by developers
 
-# Aim
 Our goal is to build the greatest collaboration platform for developer, are you ready to ditch Discord? Slack? Teams?
 
-### Requirement:
+## Requirement:
  - install go
  - install dep
  - install gin (https://github.com/codegangsta/gin)
 
-### Testing and run:
+## Testing and run:
 
 clone the project to your GOPATH/src
 
@@ -33,7 +32,7 @@ $ gin run main.go
 open localhost:3000
 ```
 
-### Docker:
+## Docker:
 
 - Dockerfile
 
