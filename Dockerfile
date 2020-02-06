@@ -1,4 +1,4 @@
-FROM golang:1.11.1
+FROM golang:1.13.7
 
 RUN mkdir -p /go/bin
 RUN mkdir -p /go/pkg

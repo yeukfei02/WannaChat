@@ -39,8 +39,8 @@ open localhost:3000
 
 build images and start container
 ```
-docker build -t <username>/wanna-chat .
-docker run -p 8080:8080 -d <username>/wanna-chat
+docker build -t <username>/wanna-chat:<tag> .
+docker run -p 8080:8080 -d <username>/wanna-chat:<tag>
 docker exec -it <containerId> /bin/bash
 docker logs <containerId>
 ```
