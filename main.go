@@ -29,6 +29,12 @@ func main() {
 	connectDBAndCreateTable(&schema.Group{})
 	connectDBAndCreateTable(&schema.Membership{})
 
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "WannaChat api",
+		})
+	})
+
 	userRoutes.Routes(r)
 	groupRoutes.Routes(r)
 	membershipRoutes.Routes(r)

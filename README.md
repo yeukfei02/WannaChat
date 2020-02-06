@@ -19,19 +19,19 @@ $ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U asgevskdmcckiw -d d7papr
 $ 0e61a105e8512dc32ef63891155ef9dedb71237faf76cf5884b1a6797159bc44
 ```
 
-if use `go` to start server
 ```
 $ dep ensure
+
+// use go start server
 $ go run main.go
-```
+
 open localhost:8080
 
-if use `gin` to start server
-```
-$ dep ensure
+// use gin start server
 $ gin run main.go
-```
+
 open localhost:3000
+```
 
 ### Docker:
 
@@ -39,8 +39,8 @@ open localhost:3000
 
 build images and start container
 ```
-docker build -t <username>/wanna-chat .
-docker run -p 8080:8080 -d <username>/wanna-chat
+docker build -t <username>/wanna-chat:<tag> .
+docker run -p 8080:8080 -d <username>/wanna-chat:<tag>
 docker exec -it <containerId> /bin/bash
 docker logs <containerId>
 ```
