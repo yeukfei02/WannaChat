@@ -71,3 +71,7 @@ docker-compose stop
 ```
 
 open localhost:8080
+
+## Contributing
+
+Please refer to [CONTRIBUTING.md](https://github.com/yeukfei02/WannaChat/blob/master/CONTRIBUTING.md)
