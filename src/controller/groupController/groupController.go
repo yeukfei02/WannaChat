@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/common"
-	"WannaChat/model/groupModel"
+	"WannaChat/src/common"
+	"WannaChat/src/model/groupModel"
 )
 
 // Group request body

@@ -3,7 +3,7 @@ package groupRoutes
 import (
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/controller/groupController"
+	"WannaChat/src/controller/groupController"
 )
 
 // Routes Group

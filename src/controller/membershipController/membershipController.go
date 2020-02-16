@@ -6,10 +6,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/common"
-	"WannaChat/model/groupModel"
-	"WannaChat/model/membershipModel"
-	"WannaChat/model/userModel"
+	"WannaChat/src/common"
+	"WannaChat/src/model/groupModel"
+	"WannaChat/src/model/membershipModel"
+	"WannaChat/src/model/userModel"
 )
 
 // Membership request body

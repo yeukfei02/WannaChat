@@ -6,11 +6,11 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/common"
-	"WannaChat/routes/groupRoutes"
-	"WannaChat/routes/membershipRoutes"
-	"WannaChat/routes/userRoutes"
-	"WannaChat/schema"
+	"WannaChat/src/common"
+	"WannaChat/src/routes/groupRoutes"
+	"WannaChat/src/routes/membershipRoutes"
+	"WannaChat/src/routes/userRoutes"
+	"WannaChat/src/schema"
 )
 
 func connectDBAndCreateTable(table interface{}) {

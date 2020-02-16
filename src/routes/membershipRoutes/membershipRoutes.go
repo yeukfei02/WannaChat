@@ -3,7 +3,7 @@ package membershipRoutes
 import (
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/controller/membershipController"
+	"WannaChat/src/controller/membershipController"
 )
 
 // Routes Membership

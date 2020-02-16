@@ -7,8 +7,8 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/common"
-	"WannaChat/model/userModel"
+	"WannaChat/src/common"
+	"WannaChat/src/model/userModel"
 )
 
 // User request body
