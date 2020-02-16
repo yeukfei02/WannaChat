@@ -3,7 +3,7 @@ package userRoutes
 import (
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/controller/userController"
+	"WannaChat/src/controller/userController"
 )
 
 // Routes User

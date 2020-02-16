@@ -1,8 +1,8 @@
 package userModel
 
 import (
-	"WannaChat/common"
-	"WannaChat/schema"
+	"WannaChat/src/common"
+	"WannaChat/src/schema"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
