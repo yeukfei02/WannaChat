@@ -13,12 +13,6 @@ Our goal is to build the greatest collaboration platform for developer, are you 
 
 clone the project to your GOPATH/src
 
-check table in postgres
-```
-$ psql -h ec2-184-73-197-211.compute-1.amazonaws.com -U asgevskdmcckiw -d d7paprak57t9n5
-$ 0e61a105e8512dc32ef63891155ef9dedb71237faf76cf5884b1a6797159bc44
-```
-
 ```
 $ dep ensure
 
