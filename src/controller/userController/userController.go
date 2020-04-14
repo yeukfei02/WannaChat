@@ -7,6 +7,7 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"golang.org/x/crypto/bcrypt"
 
 	"WannaChat/src/common"
 	"WannaChat/src/model/userModel"
@@ -27,7 +28,10 @@ func Signup(c *gin.Context) {
 	if len(user.Email) > 0 && len(user.Password) > 0 {
 		err := checkmail.ValidateFormat(user.Email)
 		if err == nil {
-			userModel.InsertUser(user.Email, user.Password)
+			userPasswordByte := []byte(user.Password)
+			hashedPassword, err := bcrypt.GenerateFromPassword(userPasswordByte, bcrypt.DefaultCost)
+			common.CheckErr(err)
+			userModel.InsertUser(user.Email, string(hashedPassword))
 
 			c.JSON(201, gin.H{
 				"message": "signup success",
@@ -52,9 +56,12 @@ func Login(c *gin.Context) {
 	if len(user.Email) > 0 && len(user.Password) > 0 {
 		err := checkmail.ValidateFormat(user.Email)
 		if err == nil {
-			userPasswordFromDb := userModel.GetUserPassword(user.Email)
+			userHashedPasswordFromDb := userModel.GetUserPassword(user.Email)
+			userHashedPasswordFromDbByte := []byte(userHashedPasswordFromDb)
+			userPasswordByte := []byte(user.Password)
 
-			if user.Password == userPasswordFromDb {
+			passwordErr := bcrypt.CompareHashAndPassword(userHashedPasswordFromDbByte, userPasswordByte)
+			if passwordErr == nil {
 				token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), &User{
 					Email:    user.Email,
 					Password: user.Password,
