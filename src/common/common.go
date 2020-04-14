@@ -50,8 +50,12 @@ func CheckAuth(c *gin.Context) bool {
 	if len(c.Request.Header.Get("Authorization")) > 0 {
 		requestToken := strings.TrimSpace(c.Request.Header.Get("Authorization")[7:len(c.Request.Header.Get("Authorization"))])
 
+		err := godotenv.Load()
+		CheckErr(err)
+		jwtSecret := os.Getenv("JWT_SECRET")
+
 		token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
-			return []byte("secret"), nil
+			return []byte(jwtSecret), nil
 		})
 		CheckErr(err)
 
