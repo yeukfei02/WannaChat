@@ -1,0 +1,1374 @@
+{
+	"info": {
+		"_postman_id": "5bc4356f-c1b5-4d64-abe1-b153441923bd",
+		"name": "WannaChat",
+		"description": "WannaChat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"signup"
+							]
+						},
+						"description": "/signup"
+					},
+					"response": [
+						{
+							"name": "/signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/user/signup",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 05:43:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"signup success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						},
+						"description": "/login"
+					},
+					"response": [
+						{
+							"name": "/login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/user/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 05:42:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"login success\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "/user"
+					},
+					"response": [
+						{
+							"name": "/user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/user",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 05:43:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "177"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"get all users\",\n    \"users\": [\n        {\n            \"ID\": 12,\n            \"CreatedAt\": \"2020-04-14T05:31:36.889337Z\",\n            \"UpdatedAt\": \"2020-04-14T05:31:36.889337Z\",\n            \"DeletedAt\": null,\n            \"email\": \"test@test.com\",\n            \"password\": \"test\"\n        },\n        {\n            \"ID\": 13,\n            \"CreatedAt\": \"2020-04-14T05:31:42.438807Z\",\n            \"UpdatedAt\": \"2020-04-14T05:31:42.438807Z\",\n            \"DeletedAt\": null,\n            \"email\": \"test2@test.com\",\n            \"password\": \"test2\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/user/{id}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						},
+						"description": "/user/{id}"
+					},
+					"response": [
+						{
+							"name": "/user/{id}",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/user/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:12:16 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "208"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"get user by id\",\n    \"user\": {\n        \"ID\": 1,\n        \"CreatedAt\": \"2020-04-14T07:10:28.359199Z\",\n        \"UpdatedAt\": \"2020-04-14T07:10:28.359199Z\",\n        \"DeletedAt\": null,\n        \"email\": \"test@test.com\",\n        \"password\": \"$2a$10$S5h2D9RLuMTqd/40b9/xZOwc9l7ZRL5bRdDPSvf60KyTLArrLkmCq\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "user",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "group",
+			"item": [
+				{
+					"name": "/create-group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"groupLabel\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/group/create-group",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"group",
+								"create-group"
+							]
+						},
+						"description": "/create-group"
+					},
+					"response": [
+						{
+							"name": "/create-group",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"groupLabel\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/group/create-group",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"group",
+										"create-group"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:21:04 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"group created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/group",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/group",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"group"
+							]
+						},
+						"description": "/group"
+					},
+					"response": [
+						{
+							"name": "/group",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/group",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"group"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:21:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"groups\": [\n        {\n            \"ID\": 2,\n            \"CreatedAt\": \"2020-04-14T07:21:10.760004Z\",\n            \"UpdatedAt\": \"2020-04-14T07:21:10.760004Z\",\n            \"DeletedAt\": null,\n            \"groupLabel\": \"test222\"\n        },\n        {\n            \"ID\": 1,\n            \"CreatedAt\": \"2020-04-14T07:21:03.298003Z\",\n            \"UpdatedAt\": \"2020-04-14T07:21:03.298003Z\",\n            \"DeletedAt\": null,\n            \"groupLabel\": \"test\"\n        }\n    ],\n    \"message\": \"get all groups\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/group/{id}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/group/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"group",
+								"2"
+							]
+						},
+						"description": "/group/{id}"
+					},
+					"response": [
+						{
+							"name": "/group/{id}",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/group/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"group",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:22:34 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "141"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"group\": {\n        \"ID\": 2,\n        \"CreatedAt\": \"2020-04-14T07:21:10.760004Z\",\n        \"UpdatedAt\": \"2020-04-14T07:21:10.760004Z\",\n        \"DeletedAt\": null,\n        \"groupLabel\": \"test222\"\n    },\n    \"message\": \"get group by id\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/group/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/group/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"group",
+								"1"
+							]
+						},
+						"description": "/group/{id}"
+					},
+					"response": [
+						{
+							"name": "/group/{id}",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/group/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"group",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:23:23 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"delete group by id\"\n}"
+						}
+					]
+				}
+			],
+			"description": "group",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "membership",
+			"item": [
+				{
+					"name": "/create-membership",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userFk\": 1,\n\t\"groupFk\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/membership/create-membership",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"membership",
+								"create-membership"
+							]
+						},
+						"description": "/create-membership"
+					},
+					"response": [
+						{
+							"name": "/create-membership",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userFk\": 1,\n\t\"groupFk\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/membership/create-membership",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"membership",
+										"create-membership"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:25:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"membership created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/membership",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/membership",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"membership"
+							]
+						},
+						"description": "/membership"
+					},
+					"response": [
+						{
+							"name": "/membership",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/membership",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"membership"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:26:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"memberships\": [\n        {\n            \"ID\": 1,\n            \"CreatedAt\": \"2020-04-14T07:25:29.533921Z\",\n            \"UpdatedAt\": \"2020-04-14T07:25:29.533921Z\",\n            \"DeletedAt\": null,\n            \"userFk\": 1,\n            \"groupFk\": 2\n        },\n        {\n            \"ID\": 2,\n            \"CreatedAt\": \"2020-04-14T07:25:53.476281Z\",\n            \"UpdatedAt\": \"2020-04-14T07:25:53.476281Z\",\n            \"DeletedAt\": null,\n            \"userFk\": 3,\n            \"groupFk\": 2\n        },\n        {\n            \"ID\": 3,\n            \"CreatedAt\": \"2020-04-14T07:25:56.259797Z\",\n            \"UpdatedAt\": \"2020-04-14T07:25:56.259797Z\",\n            \"DeletedAt\": null,\n            \"userFk\": 3,\n            \"groupFk\": 2\n        }\n    ],\n    \"message\": \"get all memberships\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/get-membership-by-group-id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/membership/get-membership-by-group-id?groupId=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"membership",
+								"get-membership-by-group-id"
+							],
+							"query": [
+								{
+									"key": "groupId",
+									"value": "2"
+								}
+							]
+						},
+						"description": "/get-membership-by-group-id"
+					},
+					"response": [
+						{
+							"name": "/get-membership-by-group-id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InRlc3QifQ.SXyvEOa2Rs64AfihAacN2cf4ejoaauL-Nl8bKTIdP3k"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/membership/get-membership-by-group-id?groupId=2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"membership",
+										"get-membership-by-group-id"
+									],
+									"query": [
+										{
+											"key": "groupId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=5184000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Dns-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Apr 2020 07:30:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "194"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"memberships\": [\n        {\n            \"ID\": 1,\n            \"CreatedAt\": \"2020-04-14T07:25:29.533921Z\",\n            \"UpdatedAt\": \"2020-04-14T07:25:29.533921Z\",\n            \"DeletedAt\": null,\n            \"userFk\": 1,\n            \"groupFk\": 2\n        },\n        {\n            \"ID\": 2,\n            \"CreatedAt\": \"2020-04-14T07:25:53.476281Z\",\n            \"UpdatedAt\": \"2020-04-14T07:25:53.476281Z\",\n            \"DeletedAt\": null,\n            \"userFk\": 3,\n            \"groupFk\": 2\n        },\n        {\n            \"ID\": 3,\n            \"CreatedAt\": \"2020-04-14T07:25:56.259797Z\",\n            \"UpdatedAt\": \"2020-04-14T07:25:56.259797Z\",\n            \"DeletedAt\": null,\n            \"userFk\": 3,\n            \"groupFk\": 2\n        }\n    ],\n    \"message\": \"get memberships by group id\"\n}"
+						}
+					]
+				}
+			],
+			"description": "membership",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
