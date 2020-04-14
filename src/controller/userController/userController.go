@@ -1,11 +1,12 @@
 package userController
 
 import (
-	"time"
+	"os"
 
 	"github.com/badoux/checkmail"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 
 	"WannaChat/src/common"
 	"WannaChat/src/model/userModel"
@@ -29,9 +30,7 @@ func Signup(c *gin.Context) {
 			userModel.InsertUser(user.Email, user.Password)
 
 			c.JSON(201, gin.H{
-				"message":         "signup!",
-				"user":            user,
-				"createdDateTime": time.Now(),
+				"message": "signup success",
 			})
 		} else {
 			c.JSON(400, gin.H{
@@ -60,17 +59,21 @@ func Login(c *gin.Context) {
 					Email:    user.Email,
 					Password: user.Password,
 				})
-				tokenString, err := token.SignedString([]byte("secret"))
+
+				err := godotenv.Load()
+				common.CheckErr(err)
+				jwtSecret := os.Getenv("JWT_SECRET")
+
+				tokenString, err := token.SignedString([]byte(jwtSecret))
 				common.CheckErr(err)
 
 				c.JSON(201, gin.H{
-					"message":         "login success!",
-					"token":           tokenString,
-					"createdDateTime": time.Now(),
+					"message": "login success",
+					"token":   tokenString,
 				})
 			} else {
 				c.JSON(400, gin.H{
-					"message": "login fail!",
+					"message": "login fail, wrong password",
 				})
 			}
 		} else {
@@ -92,13 +95,12 @@ func GetAllUsers(c *gin.Context) {
 		usersList := userModel.GetAllUsers()
 
 		c.JSON(200, gin.H{
-			"message": "get all users!",
+			"message": "get all users",
 			"users":   usersList,
-			"count":   len(usersList),
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
@@ -111,12 +113,12 @@ func GetUserByID(c *gin.Context) {
 		user := userModel.GetUserByID(userID)
 
 		c.JSON(200, gin.H{
-			"message": "get user by id!",
+			"message": "get user by id",
 			"user":    user,
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }

@@ -1,8 +1,6 @@
 package groupController
 
 import (
-	"time"
-
 	"github.com/gin-gonic/gin"
 
 	"WannaChat/src/common"
@@ -24,13 +22,11 @@ func CreateGroup(c *gin.Context) {
 		groupModel.InsertGroup(group.GroupLabel)
 
 		c.JSON(201, gin.H{
-			"message":         "group created!",
-			"group":           group,
-			"createdDateTime": time.Now(),
+			"message": "group created",
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
@@ -42,13 +38,12 @@ func GetAllGroups(c *gin.Context) {
 		groupsList := groupModel.GetAllGroups()
 
 		c.JSON(200, gin.H{
-			"message": "get all groups!",
+			"message": "get all groups",
 			"groups":  groupsList,
-			"count":   len(groupsList),
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
@@ -61,12 +56,12 @@ func GetGroupByID(c *gin.Context) {
 		group := groupModel.GetGroupByID(groupID)
 
 		c.JSON(200, gin.H{
-			"message": "get group by id!",
+			"message": "get group by id",
 			"group":   group,
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
@@ -79,11 +74,11 @@ func DeleteGroupByID(c *gin.Context) {
 		groupModel.DeleteGroupByID(groupID)
 
 		c.JSON(200, gin.H{
-			"message": "delete group by id!",
+			"message": "delete group by id",
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }

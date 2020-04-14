@@ -2,7 +2,6 @@ package membershipController
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/gin-gonic/gin"
 
@@ -34,9 +33,7 @@ func CreateMembership(c *gin.Context) {
 			membershipModel.InsertMembership(membership.UserFk, membership.GroupFk)
 
 			c.JSON(201, gin.H{
-				"message":         "membership created!",
-				"membership":      membership,
-				"createdDateTime": time.Now(),
+				"message": "membership created",
 			})
 		} else {
 			c.JSON(400, gin.H{
@@ -45,7 +42,7 @@ func CreateMembership(c *gin.Context) {
 		}
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
@@ -57,13 +54,12 @@ func GetAllMemberships(c *gin.Context) {
 		membershipsList := membershipModel.GetAllMemberships()
 
 		c.JSON(200, gin.H{
-			"message":     "get all memberships!",
+			"message":     "get all memberships",
 			"memberships": membershipsList,
-			"count":       len(membershipsList),
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
@@ -76,13 +72,12 @@ func GetMembershipsByGroupID(c *gin.Context) {
 		membershipsList := membershipModel.GetMembershipsByGroupID(groupID)
 
 		c.JSON(200, gin.H{
-			"message":     "get memberships by group id!",
+			"message":     "get memberships by group id",
 			"memberships": membershipsList,
-			"count":       len(membershipsList),
 		})
 	} else {
 		c.JSON(404, gin.H{
-			"message": "wrong or missing token!",
+			"message": "wrong or missing token",
 		})
 	}
 }
