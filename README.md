@@ -27,6 +27,10 @@ open localhost:8080
 $ gin run main.go
 
 open localhost:3000
+
+// run test case
+$ cd /src/test
+$ go test -v
 ```
 
 ## Docker:
