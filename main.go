@@ -8,6 +8,7 @@ import (
 
 	"WannaChat/src/common"
 	"WannaChat/src/routes/groupRoutes"
+	"WannaChat/src/routes/mainRoutes"
 	"WannaChat/src/routes/membershipRoutes"
 	"WannaChat/src/routes/userRoutes"
 	"WannaChat/src/schema"
@@ -29,12 +30,7 @@ func main() {
 	connectDBAndCreateTable(&schema.Group{})
 	connectDBAndCreateTable(&schema.Membership{})
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "WannaChat api",
-		})
-	})
-
+	mainRoutes.Routes(r)
 	userRoutes.Routes(r)
 	groupRoutes.Routes(r)
 	membershipRoutes.Routes(r)
