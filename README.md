@@ -29,8 +29,11 @@ $ gin run main.go
 open localhost:3000
 
 // run test case
-$ cd /src/test
+$ cd src/test
 $ go test -v
+
+// format code
+$ go fmt
 ```
 
 ## Docker:
