@@ -8,7 +8,6 @@ documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=l
 
 ## Requirement:
  - install go
- - install dep
  - install gin (https://github.com/codegangsta/gin)
 
 ## Testing and run:
@@ -16,7 +15,8 @@ documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=l
 clone the project to your GOPATH/src
 
 ```
-$ dep ensure
+// install deps
+$ go mod tidy
 
 // use go start server
 $ go run main.go
