@@ -10,13 +10,11 @@ RUN export GOROOT=/usr/local/opt/go/libexec
 RUN export PATH=$PATH:$GOPATH/bin
 RUN export PATH=$PATH:$GOROOT/bin
 
-RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-
 WORKDIR /go/src/WannaChat
 
 COPY ./ .
 
-RUN dep ensure
+RUN go mod tidy
 
 RUN go build -o main
 
