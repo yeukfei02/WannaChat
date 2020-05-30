@@ -12,8 +12,6 @@ documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=l
 
 ## Testing and run:
 
-clone the project to your GOPATH/src
-
 ```
 // install deps
 $ go mod tidy
