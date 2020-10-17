@@ -7,8 +7,9 @@ Our goal is to build the greatest collaboration platform for developer, are you 
 documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=latest
 
 ## Requirement:
- - install go
- - install gin (https://github.com/codegangsta/gin)
+
+- install go
+- install gin (https://github.com/codegangsta/gin)
 
 ## Testing and run:
 
@@ -36,40 +37,18 @@ $ go fmt
 
 ## Docker:
 
-- Dockerfile
-
-build images and start container
 ```
-docker build -t <username>/wanna-chat:<tag> .
-docker run -p 8080:8080 -d <username>/wanna-chat:<tag>
-docker exec -it <containerId> /bin/bash
-docker logs <containerId>
-```
-
-check images and container
-```
-docker images
-docker ps
-docker ps -a
-```
-
-open localhost:8080
-
-- docker-compose.yml
-
-build images and start container
-```
-docker-compose build
-docker-compose up
-```
-build images and start container in one line
-```
+// build images and start container in one line
 docker-compose up -d --build
-```
 
-stop container
-```
-docker-compose stop
+// go inside container
+docker exec -it <containerId> /bin/bash
+
+// check container logs
+docker logs <containerId>
+
+// remove and stop container
+docker-compose down
 ```
 
 open localhost:8080
