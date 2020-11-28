@@ -1,8 +1,8 @@
-package groupModel
+package groupService
 
 import (
 	"WannaChat/src/common"
-	"WannaChat/src/schema"
+	"WannaChat/src/model"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -10,29 +10,29 @@ import (
 
 var db *gorm.DB = common.OpenPostgresDBLazy()
 
-// InsertGroup model
+// InsertGroup service
 func InsertGroup(groupLabel string) {
-	group := schema.Group{
+	group := model.Group{
 		GroupLabel: groupLabel,
 	}
 	db.Create(&group)
 }
 
-// GetAllGroups model
-func GetAllGroups() []schema.Group {
-	var groups []schema.Group
+// GetAllGroups service
+func GetAllGroups() []model.Group {
+	var groups []model.Group
 	db.Find(&groups)
 	return groups
 }
 
-// GetGroupByID model
-func GetGroupByID(groupID string) schema.Group {
-	var group schema.Group
+// GetGroupByID service
+func GetGroupByID(groupID string) model.Group {
+	var group model.Group
 	db.Where("ID = ?", groupID).Find(&group)
 	return group
 }
 
-// DeleteGroupByID model
+// DeleteGroupByID service
 func DeleteGroupByID(groupID string) {
-	db.Where("ID = ?", groupID).Delete(&schema.Group{})
+	db.Where("ID = ?", groupID).Delete(&model.Group{})
 }

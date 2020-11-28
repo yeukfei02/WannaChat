@@ -10,7 +10,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 
 	"WannaChat/src/common"
-	"WannaChat/src/model/userModel"
+	"WannaChat/src/services/userService"
 )
 
 // User request body
@@ -31,7 +31,7 @@ func Signup(c *gin.Context) {
 			userPasswordByte := []byte(user.Password)
 			hashedPassword, err := bcrypt.GenerateFromPassword(userPasswordByte, bcrypt.DefaultCost)
 			common.CheckErr(err)
-			userModel.InsertUser(user.Email, string(hashedPassword))
+			userService.InsertUser(user.Email, string(hashedPassword))
 
 			c.JSON(201, gin.H{
 				"message": "signup success",
@@ -56,7 +56,7 @@ func Login(c *gin.Context) {
 	if len(user.Email) > 0 && len(user.Password) > 0 {
 		err := checkmail.ValidateFormat(user.Email)
 		if err == nil {
-			userHashedPasswordFromDb := userModel.GetUserPassword(user.Email)
+			userHashedPasswordFromDb := userService.GetUserPassword(user.Email)
 			userHashedPasswordFromDbByte := []byte(userHashedPasswordFromDb)
 			userPasswordByte := []byte(user.Password)
 
@@ -99,7 +99,7 @@ func Login(c *gin.Context) {
 func GetAllUsers(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		usersList := userModel.GetAllUsers()
+		usersList := userService.GetAllUsers()
 
 		c.JSON(200, gin.H{
 			"message": "get all users",
@@ -117,7 +117,7 @@ func GetUserByID(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		userID := c.Param("id")
-		user := userModel.GetUserByID(userID)
+		user := userService.GetUserByID(userID)
 
 		c.JSON(200, gin.H{
 			"message": "get user by id",

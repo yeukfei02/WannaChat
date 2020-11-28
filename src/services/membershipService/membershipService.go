@@ -1,8 +1,8 @@
-package membershipModel
+package membershipService
 
 import (
 	"WannaChat/src/common"
-	"WannaChat/src/schema"
+	"WannaChat/src/model"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -10,25 +10,25 @@ import (
 
 var db *gorm.DB = common.OpenPostgresDBLazy()
 
-// InsertMembership model
+// InsertMembership service
 func InsertMembership(userFk uint, groupFk uint) {
-	membership := schema.Membership{
+	membership := model.Membership{
 		UserFk:  userFk,
 		GroupFk: groupFk,
 	}
 	db.Create(&membership)
 }
 
-// GetAllMemberships model
-func GetAllMemberships() []schema.Membership {
-	var memberships []schema.Membership
+// GetAllMemberships service
+func GetAllMemberships() []model.Membership {
+	var memberships []model.Membership
 	db.Find(&memberships)
 	return memberships
 }
 
-// GetMembershipsByGroupID model
-func GetMembershipsByGroupID(groupID string) []schema.Membership {
-	var memberships []schema.Membership
+// GetMembershipsByGroupID service
+func GetMembershipsByGroupID(groupID string) []model.Membership {
+	var memberships []model.Membership
 	db.Where("group_fk = ?", groupID).Find(&memberships)
 	return memberships
 }
