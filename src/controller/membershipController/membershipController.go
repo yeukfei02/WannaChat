@@ -6,9 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"WannaChat/src/common"
-	"WannaChat/src/model/groupModel"
-	"WannaChat/src/model/membershipModel"
-	"WannaChat/src/model/userModel"
+	"WannaChat/src/services/groupService"
+	"WannaChat/src/services/membershipService"
+	"WannaChat/src/services/userService"
 )
 
 // Membership request body
@@ -24,13 +24,13 @@ func CreateMembership(c *gin.Context) {
 		var membership Membership
 		c.BindJSON(&membership)
 
-		user := userModel.GetUserByID(fmt.Sprint(membership.UserFk))
-		group := groupModel.GetGroupByID(fmt.Sprint(membership.GroupFk))
+		user := userService.GetUserByID(fmt.Sprint(membership.UserFk))
+		group := groupService.GetGroupByID(fmt.Sprint(membership.GroupFk))
 		fmt.Println("userId = ", user.ID)
 		fmt.Println("groupId = ", group.ID)
 
 		if user.ID > 0 && group.ID > 0 {
-			membershipModel.InsertMembership(membership.UserFk, membership.GroupFk)
+			membershipService.InsertMembership(membership.UserFk, membership.GroupFk)
 
 			c.JSON(201, gin.H{
 				"message": "membership created",
@@ -51,7 +51,7 @@ func CreateMembership(c *gin.Context) {
 func GetAllMemberships(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		membershipsList := membershipModel.GetAllMemberships()
+		membershipsList := membershipService.GetAllMemberships()
 
 		c.JSON(200, gin.H{
 			"message":     "get all memberships",
@@ -69,7 +69,7 @@ func GetMembershipsByGroupID(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Query("groupId")
-		membershipsList := membershipModel.GetMembershipsByGroupID(groupID)
+		membershipsList := membershipService.GetMembershipsByGroupID(groupID)
 
 		c.JSON(200, gin.H{
 			"message":     "get memberships by group id",

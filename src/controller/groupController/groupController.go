@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"WannaChat/src/common"
-	"WannaChat/src/model/groupModel"
+	"WannaChat/src/services/groupService"
 )
 
 // Group request body
@@ -19,7 +19,7 @@ func CreateGroup(c *gin.Context) {
 		var group Group
 		c.BindJSON(&group)
 
-		groupModel.InsertGroup(group.GroupLabel)
+		groupService.InsertGroup(group.GroupLabel)
 
 		c.JSON(201, gin.H{
 			"message": "group created",
@@ -35,7 +35,7 @@ func CreateGroup(c *gin.Context) {
 func GetAllGroups(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
-		groupsList := groupModel.GetAllGroups()
+		groupsList := groupService.GetAllGroups()
 
 		c.JSON(200, gin.H{
 			"message": "get all groups",
@@ -53,7 +53,7 @@ func GetGroupByID(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Param("id")
-		group := groupModel.GetGroupByID(groupID)
+		group := groupService.GetGroupByID(groupID)
 
 		c.JSON(200, gin.H{
 			"message": "get group by id",
@@ -71,7 +71,7 @@ func DeleteGroupByID(c *gin.Context) {
 	tokenValid := common.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Param("id")
-		groupModel.DeleteGroupByID(groupID)
+		groupService.DeleteGroupByID(groupID)
 
 		c.JSON(200, gin.H{
 			"message": "delete group by id",
