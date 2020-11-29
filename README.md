@@ -9,7 +9,6 @@ documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=l
 ## Requirement:
 
 - install go
-- install gin (https://github.com/codegangsta/gin)
 
 ## Testing and run:
 
@@ -22,8 +21,8 @@ $ go run main.go
 
 open localhost:8080
 
-// use gin start server
-$ gin run main.go
+// use air start server
+$ air
 
 open localhost:3000
 
