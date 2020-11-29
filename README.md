@@ -19,12 +19,10 @@ $ go mod tidy
 // use go start server
 $ go run main.go
 
-open localhost:8080
-
 // use air start server
 $ air
 
-open localhost:3000
+open localhost:8080
 
 // run test case
 $ cd src/test
