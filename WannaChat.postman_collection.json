@@ -121,6 +121,21 @@
 				},
 				{
 					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"console.log(\"jsonData = \", jsonData);",
+									"if (jsonData) {",
+									"    pm.environment.set(\"jwtToken\", jsonData.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
