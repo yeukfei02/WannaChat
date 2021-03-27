@@ -4,6 +4,8 @@ WannaChat
 
 documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=latest
 
+url: https://wanna-chat-api.herokuapp.com/
+
 ## Requirement:
 
 - install go
