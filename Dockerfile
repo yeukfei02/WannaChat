@@ -1,4 +1,4 @@
-FROM golang:1.15
+FROM golang:1.16-alpine
 
 RUN mkdir -p /go/bin
 RUN mkdir -p /go/pkg
