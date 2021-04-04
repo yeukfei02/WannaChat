@@ -2,17 +2,17 @@
 
 WannaChat
 
-documentation: https://documenter.getpostman.com/view/3827865/Szf24qG7?version=latest
+documentation: <https://documenter.getpostman.com/view/3827865/Szf24qG7?version=latest>
 
-url: https://wanna-chat-api.herokuapp.com/
+url: <https://wanna-chat-api.herokuapp.com/>
 
-## Requirement:
+## Requirement
 
 - install go
 
-## Testing and run:
+## Testing and run
 
-```
+```zsh
 // install deps
 $ go mod tidy
 
@@ -32,9 +32,9 @@ $ go test -v
 $ go fmt
 ```
 
-## Docker:
+## Docker
 
-```
+```zsh
 // build images and start container in one line
 docker-compose up -d --build
 
