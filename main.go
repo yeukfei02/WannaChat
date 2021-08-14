@@ -12,7 +12,9 @@ import (
 	"WannaChat/src/routes/membershipRoutes"
 	"WannaChat/src/routes/userRoutes"
 
-	"WannaChat/src/model"
+	"WannaChat/src/model/groupModel"
+	"WannaChat/src/model/membershipModel"
+	"WannaChat/src/model/userModel"
 )
 
 func connectDBAndCreateTable(table interface{}) {
@@ -27,9 +29,9 @@ func main() {
 	r.Use(helmet.Default())
 	r.Use(gzip.Gzip(gzip.DefaultCompression))
 
-	connectDBAndCreateTable(&model.User{})
-	connectDBAndCreateTable(&model.Group{})
-	connectDBAndCreateTable(&model.Membership{})
+	connectDBAndCreateTable(&userModel.User{})
+	connectDBAndCreateTable(&groupModel.Group{})
+	connectDBAndCreateTable(&membershipModel.Membership{})
 
 	mainRoutes.Routes(r)
 	userRoutes.Routes(r)
