@@ -6,7 +6,7 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/routes/groupRoutes"
 	"WannaChat/src/routes/mainRoutes"
 	"WannaChat/src/routes/membershipRoutes"
@@ -18,9 +18,9 @@ import (
 )
 
 func connectDBAndCreateTable(table interface{}) {
-	db := common.OpenPostgresDBLazy()
+	db := helpers.OpenPostgresDBLazy()
 	defer db.Close()
-	common.CheckTableExists(db, table)
+	helpers.CheckTableExists(db, table)
 }
 
 func main() {

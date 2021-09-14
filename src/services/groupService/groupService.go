@@ -1,14 +1,14 @@
 package groupService
 
 import (
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/model/groupModel"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-var db *gorm.DB = common.OpenPostgresDBLazy()
+var db *gorm.DB = helpers.OpenPostgresDBLazy()
 
 // InsertGroup service
 func InsertGroup(groupLabel string) {

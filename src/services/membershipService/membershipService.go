@@ -1,14 +1,14 @@
 package membershipService
 
 import (
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/model/membershipModel"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-var db *gorm.DB = common.OpenPostgresDBLazy()
+var db *gorm.DB = helpers.OpenPostgresDBLazy()
 
 // InsertMembership service
 func InsertMembership(userFk uint, groupFk uint) {
