@@ -3,7 +3,7 @@ package groupController
 import (
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/services/groupService"
 )
 
@@ -14,7 +14,7 @@ type Group struct {
 
 // CreateGroup controller
 func CreateGroup(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		var group Group
 		c.BindJSON(&group)
@@ -33,7 +33,7 @@ func CreateGroup(c *gin.Context) {
 
 // GetAllGroups controller
 func GetAllGroups(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		groupsList := groupService.GetAllGroups()
 
@@ -50,7 +50,7 @@ func GetAllGroups(c *gin.Context) {
 
 // GetGroupByID controller
 func GetGroupByID(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Param("id")
 		group := groupService.GetGroupByID(groupID)
@@ -68,7 +68,7 @@ func GetGroupByID(c *gin.Context) {
 
 // DeleteGroupByID controller
 func DeleteGroupByID(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Param("id")
 		groupService.DeleteGroupByID(groupID)

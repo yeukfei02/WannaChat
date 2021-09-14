@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/services/groupService"
 	"WannaChat/src/services/membershipService"
 	"WannaChat/src/services/userService"
@@ -19,7 +19,7 @@ type Membership struct {
 
 // CreateMembership controller
 func CreateMembership(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		var membership Membership
 		c.BindJSON(&membership)
@@ -49,7 +49,7 @@ func CreateMembership(c *gin.Context) {
 
 // GetAllMemberships controller
 func GetAllMemberships(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		membershipsList := membershipService.GetAllMemberships()
 
@@ -66,7 +66,7 @@ func GetAllMemberships(c *gin.Context) {
 
 // GetMembershipsByGroupID controller
 func GetMembershipsByGroupID(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		groupID := c.Query("groupId")
 		membershipsList := membershipService.GetMembershipsByGroupID(groupID)

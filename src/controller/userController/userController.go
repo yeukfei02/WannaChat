@@ -9,7 +9,7 @@ import (
 	"github.com/joho/godotenv"
 	"golang.org/x/crypto/bcrypt"
 
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/services/userService"
 )
 
@@ -30,7 +30,7 @@ func Signup(c *gin.Context) {
 		if err == nil {
 			userPasswordByte := []byte(user.Password)
 			hashedPassword, err := bcrypt.GenerateFromPassword(userPasswordByte, bcrypt.DefaultCost)
-			common.CheckErr(err)
+			helpers.CheckErr(err)
 			userService.InsertUser(user.Email, string(hashedPassword))
 
 			c.JSON(201, gin.H{
@@ -68,11 +68,11 @@ func Login(c *gin.Context) {
 				})
 
 				err := godotenv.Load()
-				common.CheckErr(err)
+				helpers.CheckErr(err)
 				jwtSecret := os.Getenv("JWT_SECRET")
 
 				tokenString, err := token.SignedString([]byte(jwtSecret))
-				common.CheckErr(err)
+				helpers.CheckErr(err)
 
 				c.JSON(201, gin.H{
 					"message": "login success",
@@ -97,7 +97,7 @@ func Login(c *gin.Context) {
 
 // GetAllUsers controller
 func GetAllUsers(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		usersList := userService.GetAllUsers()
 
@@ -114,7 +114,7 @@ func GetAllUsers(c *gin.Context) {
 
 // GetUserByID controller
 func GetUserByID(c *gin.Context) {
-	tokenValid := common.CheckAuth(c)
+	tokenValid := helpers.CheckAuth(c)
 	if tokenValid {
 		userID := c.Param("id")
 		user := userService.GetUserByID(userID)

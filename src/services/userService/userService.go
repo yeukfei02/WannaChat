@@ -1,14 +1,14 @@
 package userService
 
 import (
-	"WannaChat/src/common"
+	"WannaChat/src/helpers"
 	"WannaChat/src/model/userModel"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-var db *gorm.DB = common.OpenPostgresDBLazy()
+var db *gorm.DB = helpers.OpenPostgresDBLazy()
 
 // InsertUser service
 func InsertUser(email string, password string) {
